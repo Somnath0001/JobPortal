@@ -1,0 +1,34 @@
+https://docs.google.com/spreadsheets/d/1lqPDN3rqiKMHOB8GKVNU3MxOXefRLjSY9ovbTAASuvE/edit?gid=0#gid=0
+
+Step 1.2: Research Existing Job Portals
+Objective: Analyze existing job portals to identify features, functionalities, strengths, and weaknesses.
+What to do:
+Select job portals: Choose 3-5 popular job portals (e.g., LinkedIn, Indeed, Glassdoor, Monster, CareerBuilder).
+Explore each portal: Spend time navigating each portal, exploring its features, and taking notes.
+Identify features and functionalities: Document the features and functionalities you find, such as:
+Job search and filtering options
+Job posting and application processes
+Resume management and storage
+User profiles and networking
+Mobile app availability
+Analyze strengths and weaknesses: Evaluate each portal's strengths and weaknesses, considering factors like:
+User experience and interface
+Job search and matching algorithms
+Employer and job seeker engagement
+Customer support and resources
+Mobile optimization and responsiveness
+What to document:
+Features and functionalities: Create a table or list to document the features and functionalities you've identified for each portal.
+Strengths and weaknesses: Write a brief analysis of each portal's strengths and weaknesses, highlighting areas of excellence and improvement.
+Comparison matrix: Create a comparison matrix to visualize the features and functionalities of each portal, making it easier to identify patterns and differences.
+How to proceed:
+Review and refine: Review your documentation and refine your analysis, ensuring accuracy and clarity.
+Identify patterns and trends: Look for patterns and trends in your analysis, highlighting common features, strengths, and weaknesses.
+Inform your project: Use your research to inform your project, incorporating successful features and functionalities while avoiding weaknesses.
+Example documentation:
+Job Portal	Features and Functionalities	Strengths	Weaknesses
+LinkedIn	Job search, job posting, resume management, user profiles	Strong user network, robust job search	Complex interface, limited job posting options
+Indeed	Job search, job posting, resume management, mobile app	Comprehensive job search, user-friendly interface	Limited employer engagement, outdated design
+Glassdoor	Job search, job posting, resume management, company reviews	Robust company reviews, comprehensive job search	Limited user profiles, outdated design
+Remember to keep your documentation organized, clear, and concise, making it easy to reference and build upon throughout your project.
+Do you have any questions or need further assistance?
