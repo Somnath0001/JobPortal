@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/company.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Company Profile</h2>
+            <form>
+                <div class="input-box">
+                    <label for="company-name">Company Name:</label>
+                    <input type="text" id="company-name" required>
+                </div>
+                <div class="input-box">
+                    <label for="profile-description">Profile Description:</label>
+                    <textarea id="profile-description" rows="5" required></textarea>
+                </div>
+                <div class="input-box">
+                    <label for="business-stream">Select Business Stream:</label>
+                    <select id="business-stream" required>
+                        <option value="">Select Stream</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Healthcare">Healthcare</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="establishment-date">Establishment Date:</label>
+                    <input type="date" id="establishment-date" required>
+                </div>
+                <div class="input-box">
+                    <label for="website-url">Website URL:</label>
+                    <input type="url" id="website-url" required>
+                </div>
+                <div class="input-box">
+                    <label for="company-image">Upload Company Image:</label>
+                    <input type="file" id="company-image" accept="image/*">
+                </div>
+                <button type="submit" class="submit-button">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

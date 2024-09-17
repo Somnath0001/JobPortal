@@ -1,3 +1,11 @@
+1. Login Page - to login
+2. Register Page - job seeker or HR recruiter will register
+3. Job Seeker Profile Page - job seeker will build this
+4. Company Profile Page - HR recruiter will build this
+5. Job Posting Page - Company will post jobs
+6. Job Listing Page - Jobs will be listed based on job seeker's filters.
+
+
 Login Page:
 -----------
 Email / Contact Number - user_account
@@ -11,7 +19,7 @@ Register Page:
 Select Recruiter / Job Seeker - user_type(user_account)
 
 For Job Seeker / HR Recruiter:
-Name - it should be implemented
+Name - user_account
 Gender - user_account
 Date of Birth - user_account
 Email - user_account
@@ -103,6 +111,8 @@ Country -
 Zip Code - 
 Select Skill Required (n) - skill_set / job_post_skill_set
 Choose Skill Level (n) - job_post_skill_set
+Experience Required 
+Salary Offered
 Apply Date - 
 job_post(id) will be auto generated.
 job_post(posted_by_id) - is the logged in user 

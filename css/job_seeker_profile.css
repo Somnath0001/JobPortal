@@ -1,0 +1,115 @@
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    margin: 40px auto;
+}
+
+.card h2 {
+    text-align: center;
+    color: #2196F3;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile-info h3 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    color: #666;
+}
+
+.collapsible {
+    margin-bottom: 20px;
+}
+
+.collapsible-button {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.collapsible-button:hover {
+    background-color: #1A76D2;
+}
+
+.collapsible-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.input-box {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-box label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.input-box input, .input-box select, .input-box textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.add-education-button, .add-skill-button, .add-experience-button {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.add-education-button:hover, .add-skill-button:hover, .add-experience-button:hover {
+    background-color: #1A76D2;
+}
+
+.education-details, .skill-details, .experience-details {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+    .input-box {
+        width: 100%;
+    }
+}

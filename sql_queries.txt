@@ -73,6 +73,69 @@ ALTER TABLE job_type AUTO_INCREMENT = 1;
 ALTER TABLE job_location AUTO_INCREMENT = 1;
 ALTER TABLE job_post AUTO_INCREMENT = 1;
 
+/*
+Suggestions:
+    1. Consider adding a table for storing resumes, with a foreign key referencing the user_account table.
+    2. You may want to add a table for storing job application statuses (e.g., pending, rejected, accepted).
+    3. For the education_detail table, consider adding a separate table for storing institutions and universities to avoid data redundancy.
+    4. In the experience_details table, you may want to add a column for storing the job's industry or sector.
+*/
+
+-- adding business_stream_id in experience_details table which will be foreign key to business_stream table:
+-- Add business_stream_id column
+ALTER TABLE experience_details
+ADD COLUMN business_stream_id INT NOT NULL;
+
+-- Add foreign key constraint
+ALTER TABLE experience_details
+ADD CONSTRAINT fk_business_stream_id
+FOREIGN KEY (business_stream_id)
+REFERENCES business_stream (id);
+
+-- renamed experience_details to experience_detail
+RENAME TABLE `job_portal`.`experience_details` TO `job_portal`.`experience_detail`;
+
+/*
+1. Resume Table: resume
+Purpose: Store resumes uploaded by job seekers.
+Columns:
+    id (primary key)
+    user_account_id (foreign key referencing user_account)
+    resume_file (blob or varchar to store file path)
+    file_name (resume file name)
+    upload_date (timestamp)
+*/
+CREATE TABLE `job_portal`.`resume` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_account_id` INT NOT NULL,
+  `resume_file` BLOB,
+  `file_name` VARCHAR(255) NOT NULL,
+  `upload_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_account_id`) REFERENCES `user_account` (`id`)
+) ENGINE = InnoDB;
+
+
+/*
+2. Job Application Status Table: job_application_status
+Purpose: Store the status of job applications.
+Columns:
+    id (primary key)
+    job_post_id (foreign key referencing job_post)
+    user_account_id (foreign key referencing user_account)
+    status (enum: 'pending', 'rejected', 'accepted', etc.)
+    application_date (timestamp)
+*/
+CREATE TABLE `job_portal`.`job_application_status` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `job_post_id` INT NOT NULL,
+  `user_account_id` INT NOT NULL,
+  `status` ENUM('pending', 'rejected', 'accepted', 'interviewScheduled') NOT NULL,
+  `application_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`job_post_id`) REFERENCES `job_post` (`id`),
+  FOREIGN KEY (`user_account_id`) REFERENCES `user_account` (`id`)
+) ENGINE = InnoDB;
 
 
 

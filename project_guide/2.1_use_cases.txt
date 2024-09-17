@@ -1,0 +1,49 @@
+Here are the requirements documented using the techniques I mentioned earlier:
+Use Cases:
+Job Seeker Use Cases
+Search Job Postings
+Actor: Job Seeker
+Description: Job seeker searches for job postings by keyword, location, and category.
+Precondition: Job seeker is registered and logged in.
+Postcondition: Job seeker views search results.
+View Job Details
+Actor: Job Seeker
+Description: Job seeker views detailed information about a job posting.
+Precondition: Job seeker is registered and logged in.
+Postcondition: Job seeker decides to apply or save job.
+Apply to Job
+Actor: Job Seeker
+Description: Job seeker applies to a job posting.
+Precondition: Job seeker is registered and logged in.
+Postcondition: Employer receives application.
+Employer Use Cases
+Post Job
+Actor: Employer
+Description: Employer creates and posts a job listing.
+Precondition: Employer is registered and logged in.
+Postcondition: Job posting is live and visible to job seekers.
+Manage Job Postings
+Actor: Employer
+Description: Employer edits, deletes, or expires job postings.
+Precondition: Employer is registered and logged in.
+Postcondition: Job posting is updated.
+User Stories:
+Job Seeker User Stories
+As a job seeker, I want to search for job postings by keyword and location so that I can find relevant job opportunities.
+As a job seeker, I want to view detailed information about a job posting so that I can decide to apply or save.
+As a job seeker, I want to apply to a job posting easily and efficiently.
+Employer User Stories
+As an employer, I want to post job listings quickly and easily.
+As an employer, I want to manage my job postings effectively.
+As an employer, I want to receive applications from qualified job seekers.
+Requirements Gathering Template:
+Requirement ID	Description	Functional Area	Priority
+REG-001	User registration with email verification	User Registration	High
+REG-002	Job posting creation and management	Job Posting	High
+REG-003	Search functionality for job postings	Search	Medium
+REG-004	Application submission and tracking	Application	High
+REG-005	Resume management and upload	Resume	Medium
+Feel free to copy and paste these into your documentation.
+Please let me know if you'd like me to add anything else.
+
+

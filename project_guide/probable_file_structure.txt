@@ -1,0 +1,81 @@
+job-portal/
+│
+├── index.html (Login Page)
+├── register.html
+├── job-seeker-profile.html
+├── company-profile.html
+├── job-posting.html
+├── job-listing.html
+├── filters.html
+│
+├── css/
+│   ├── style.css (global styles)
+│   ├── login.css
+│   ├── register.css
+│   ├── job-seeker-profile.css
+│   ├── company-profile.css
+│   ├── job-posting.css
+│   ├── job-listing.css
+│   └── filters.css
+│
+├── images/
+│   ├── logo.png
+│   ├── company-logos/
+│   │   ├── company1-logo.png
+│   │   ├── company2-logo.png
+│   │   └── ...
+│   └── job-seeker-avatars/
+│       ├── seeker1-avatar.png
+│       ├── seeker2-avatar.png
+│       └── ...
+│
+├── js/
+│   ├── script.js (global JavaScript file)
+│   ├── login.js
+│   ├── register.js
+│   ├── job-seeker-profile.js
+│   ├── company-profile.js
+│   ├── job-posting.js
+│   ├── job-listing.js
+│   └── filters.js
+│
+├── assets/
+│   ├── fonts/
+│   │   ├── font1.ttf
+│   │   ├── font2.ttf
+│   │   └── ...
+│   └── icons/
+│       ├── icon1.png
+│       ├── icon2.png
+│       └── ...
+│
+├── backend/
+│   ├── api/
+│   │   ├── user-api.php
+│   │   ├── job-api.php
+│   │   ├── company-api.php
+│   │   └── ...
+│   ├── config/
+│   │   ├── database.php
+│   │   ├── constants.php
+│   │   └── ...
+│   ├── models/
+│   │   ├── User.php
+│   │   ├── Job.php
+│   │   ├── Company.php
+│   │   └── ...
+│   ├── controllers/
+│   │   ├── UserController.php
+│   │   ├── JobController.php
+│   │   ├── CompanyController.php
+│   │   └── ...
+│   └── database/
+│       └── job_portal.sql
+│
+├── vendor/
+│   ├── autoload.php
+│   └── ...
+│
+├── .htaccess
+├── composer.json
+└── README.md

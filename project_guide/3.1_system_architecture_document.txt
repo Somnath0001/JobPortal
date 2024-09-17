@@ -1,0 +1,78 @@
+Here's an updated system architecture document reflecting your technology choices:
+System Architecture Document
+Introduction:
+The Job Portal is a web-based application designed to connect job seekers with employers.
+System Components:
+Frontend:
+HTML (Hypertext Markup Language)
+CSS (Cascading Style Sheets)
+Minimal JavaScript usage (for form validation and basic interactions)
+Backend:
+Python (Flask)
+Database: MySQL (Relational Database Management System)
+API Gateway: Flask-RESTful
+Database:
+MySQL (Relational Database Management System)
+Database schema: Normalized, 3NF
+Storage: Indexed, partitioned
+Authentication and Authorization:
+Authentication: Bcrypt password hashing
+Authorization: Role-Based Access Control (RBAC)
+API:
+RESTful API (Flask-RESTful)
+API endpoints: Job postings, applications, resumes, users
+Data formats: JSON, XML
+System Interactions:
+User Registration:
+User submits registration form
+Backend validates input, hashes password
+Database stores user data
+Job Posting:
+Employer creates job posting
+Backend validates input, stores job data
+Database updates job listings
+Application Submission:
+Job seeker applies to job posting
+Backend validates input, stores application data
+Database updates application status
+Resume Management:
+Job seeker uploads resume
+Backend stores resume data
+Database updates resume information
+System Diagrams:
+Mermaid
+graph LR
+    participant User as "Job Seeker/Employer"
+    participant Frontend as "HTML, CSS, Minimal JavaScript"
+    participant Backend as "Python (Flask)"
+    participant Database as "MySQL"
+    participant API as "RESTful API"
+
+    User->>Frontend: Interacts with UI
+    Frontend->>Backend: Sends requests
+    Backend->>Database: Queries/Updates data
+    Backend->>API: Exposes endpoints
+    API->>Frontend: Returns data
+Technology Stack:
+Frontend: HTML, CSS, Minimal JavaScript
+Backend: Python, Flask, MySQL
+Database: MySQL
+API Gateway: Flask-RESTful
+Authentication: Bcrypt
+Authorization: Role-Based Access Control (RBAC)
+Scalability and Performance:
+Horizontal scaling: Add more servers
+Vertical scaling: Increase server resources
+Caching: Implement caching mechanisms
+Load balancing: Distribute traffic evenly
+Security:
+Authentication: Bcrypt password hashing
+Authorization: Role-Based Access Control (RBAC)
+Data encryption: SSL/TLS
+Secure password storage
+Please let me know if you'd like me to revise anything.
+Next steps:
+Design database schema
+Implement backend functionality using Flask
+Create frontend UI using HTML and CSS
+Would you like me to assist with any of these tasks?
