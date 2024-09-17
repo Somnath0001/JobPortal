@@ -115,5 +115,12 @@ Should be implemented:
 user_account -> name
 job_post     -> experience_required (optional)
                 salary_offered (optional)
+                work_mode
 
+ALTER TABLE job_post
+ADD COLUMN salary_offered INT,
+ADD COLUMN experience_required INT;
+
+ALTER TABLE user_account 
+ADD COLUMN name VARCHAR(50) NOT NULL AFTER password;
 

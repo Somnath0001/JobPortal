@@ -50,6 +50,28 @@ CREATE TABLE `job_portal`.`job_post_skill_set` (`skill_set_id` INT NOT NULL , `j
 CREATE TABLE `job_portal`.`job_post_activity` (`user_account_id` INT NOT NULL , `job_post_id` INT NOT NULL , `apply_date` DATE NOT NULL , PRIMARY KEY (`user_account_id`, `job_post_id`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id) , FOREIGN KEY (job_post_id) REFERENCES job_post(id)) ENGINE = InnoDB;
 
 
+-- Modifications
+
+
+-- add salary_offered & experience_required tables in job_post table:
+ALTER TABLE job_post
+ADD COLUMN salary_offered INT,
+ADD COLUMN experience_required INT;
+
+-- add name column in user_account table:
+ALTER TABLE user_account 
+ADD COLUMN name VARCHAR(50) NOT NULL AFTER password;
+
+-- adding AUTO_INCREMENT in tables
+-- ALTER TABLE <table name> AUTO_INCREMENT = 1;
+ALTER TABLE user_type AUTO_INCREMENT = 1;
+ALTER TABLE user_account AUTO_INCREMENT = 1;
+ALTER TABLE business_stream AUTO_INCREMENT = 1;
+ALTER TABLE company AUTO_INCREMENT = 1;
+ALTER TABLE skill_set AUTO_INCREMENT = 1;
+ALTER TABLE job_type AUTO_INCREMENT = 1;
+ALTER TABLE job_location AUTO_INCREMENT = 1;
+ALTER TABLE job_post AUTO_INCREMENT = 1;
 
 
 
