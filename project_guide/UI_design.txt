@@ -1,0 +1,119 @@
+Login Page:
+-----------
+Email / Contact Number - user_account
+Password - user_account
+
+Capture "last_login_date" - user_log
+
+
+Register Page:
+--------------
+Select Recruiter / Job Seeker - user_type(user_account)
+
+For Job Seeker / HR Recruiter:
+Name - it should be implemented
+Gender - user_account
+Date of Birth - user_account
+Email - user_account
+Contact Number - user_account
+Password - user_account
+Profile Picture (optional) - user_account
+Registration Date (auto) - user_account
+SMS Notification (auto active) - user_account
+Email Notificaiton (auto active) - user_account
+
+Job Seeker --> Job Seeker Profile
+HR Recruiter --> Company Profile
+
+Job Listing Card:
+-------------------
+Job role - job_description(job_post)
+Company Name - company_id(job_post - is_company_hidden, company)
+Company Image - company_image
+Exprerience Years - [required]
+Salary if disclosed / not disclosed - 
+Location - job_location(job_post)
+Qualification / Skill Required - skill_set_id(job_post_skill_set) / education_detail
+Job When Listed - created_date(job_post)
+
+Job Seeker Profile Page:
+------------------------
+Personal Details:
+
+First Name - seeker_profile
+Last Name - seeker_profile
+
+Educational Details (n):
+
+Certificate/ Degree Name - edcation_detail
+Major - 
+Institute/ University Name - 
+Degree Starting Date - 
+Degree Completion Date (optional) - 
+Percentage Obtained (optional) - 
+CGPA (optional) - 
+
+Skills (n) :
+
+Select Skill - seeker_skill_set / skill_set_id
+Skill Level - seeker_skill_set
+
+Experience Details (n):
+
+Are you working now? - experience_detail
+Job Start Date -
+Job End Date -
+Job Title - 
+Company Name - 
+City - 
+State - 
+State - 
+Country - 
+Job Description - 
+
+Current Salary Details (Optional):
+
+Current Salary - seeker_profile
+Anually/ monthly - seeker_profile
+Currency - seeker_profile
+
+
+Company Profile Page:
+---------------------
+Company Name - company
+Profile Description - 
+Select Business Stream - business_stream
+Establishment Date - 
+Website URL - 
+Company Images (n) - company_image 
+
+
+Job Posting Page:
+-----------------
+Select Job Type - job_type / job_post
+Select Company - company / job_post
+Select to hide Company Name? - 
+Job Description - 
+Select Job Location - 
+Or Enter JOb Location
+Street Address - job_location
+City - 
+State - 
+Country - 
+Zip Code - 
+Select Skill Required (n) - skill_set / job_post_skill_set
+Choose Skill Level (n) - job_post_skill_set
+Apply Date - 
+job_post(id) will be auto generated.
+job_post(posted_by_id) - is the logged in user 
+job_post(created_date) - will be picked up.
+
+
+
+Should be implemented:
+----------------------
+user_account -> name
+job_post     -> experience_required (optional)
+                salary_offered (optional)
+
+
