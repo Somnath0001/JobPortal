@@ -109,6 +109,22 @@ job_post(posted_by_id) - is the logged in user
 job_post(created_date) - will be picked up.
 
 
+Filters:
+--------
+Work mode 
+Experience
+Department
+Location
+Salary
+Company Type
+Role category
+Stipend
+Duration
+Education 
+Posted by 
+Industry 
+Top companies
+
 
 Should be implemented:
 ----------------------
