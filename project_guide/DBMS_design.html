@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/ -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title> Designing a Database for an Online Job Portal | Vertabelo Database Modeler </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    
+    <meta name="google-site-verification" content="6HBIOT_mJGw-seVYbgcFTk0gYVXUFRTd-PZFj1t-Sv4">
+    
+    
+    
+      <meta name="ROBOTS" content="INDEX, FOLLOW">
+    
+
+
+    
+    
+  
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+    
+    
+    
+    
+    
+    
+    
+    <link href="./DBMS_design_files/main.css" rel="stylesheet">
+    
+
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-MLK66T4056&amp;l=dataLayer&amp;cx=c"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5QPZ2NT"></script><script type="text/javascript" src="./DBMS_design_files/jquery.min.js.download"></script>
+    <script type="text/javascript" src="./DBMS_design_files/slick.min.js.download"></script>
+
+    <script type="text/javascript" src="./DBMS_design_files/jquery.plugin.js.download"></script>
+    <script type="text/javascript" src="./DBMS_design_files/jquery.sticky.js.download"></script>
+    <script type="text/javascript" src="./DBMS_design_files/academy.min.js.download"></script>
+    <script type="text/javascript" src="./DBMS_design_files/pricing.min.js.download"></script>
+    <script type="text/javascript" src="./DBMS_design_files/jQuery.progressBar.min.js.download"></script>
+
+    
+   
+    
+
+    
+      
+<link rel="shortcut icon" href="https://vertabelo.com/blog-img/Favicon2.png" type="image/x-icon">
+
+    
+
+    
+
+    <meta property="og:title" content="Designing a Database for an Online Job Portal">
+<meta property="og:description" content="Across the globe, the job portal site is a well-known feature of the Internet landscape. Big players like Indeed and Monster have turned job hunting and recruiting into a veritable online industry. Let’s dive into the elementary features leveraged by job portals and build a data model that can support them. ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/"><meta property="article:published_time" content="2016-11-15T00:00:00+00:00">
+<meta property="article:modified_time" content="2016-11-15T00:00:00+00:00"><meta property="og:site_name" content="Vertabelo Data Modeler">
+<meta property="article:publisher" content="https://www.facebook.com/VertabeloAcdm">
+<meta property="article:section" content="blog">
+<meta property="article:tag" content="database design">
+<meta property="article:tag" content="database modeling">
+<meta property="article:tag" content="example data model">
+<meta property="article:tag" content="example ER diagram">
+<meta property="article:tag" content="example ERD diagram">
+<meta property="article:tag" content="database model">
+
+<meta itemprop="name" content="Designing a Database for an Online Job Portal">
+<meta itemprop="description" content="Across the globe, the job portal site is a well-known feature of the Internet landscape. Big players like Indeed and Monster have turned job hunting and recruiting into a veritable online industry. Let’s dive into the elementary features leveraged by job portals and build a data model that can support them. ">
+
+
+<meta itemprop="datePublished" content="2016-11-15T00:00:00+00:00">
+<meta itemprop="dateModified" content="2016-11-15T00:00:00+00:00">
+<meta itemprop="wordCount" content="2227">
+
+
+
+<meta itemprop="keywords" content="database design,database modeling,example data model,example ER diagram,example ERD diagram,database model,template,">
+
+<meta name="twitter:title" content="Designing a Database for an Online Job Portal">
+<meta name="twitter:description" content="Across the globe, the job portal site is a well-known feature of the Internet landscape. Big players like Indeed and Monster have turned job hunting and recruiting into a veritable online industry. Let’s dive into the elementary features leveraged by job portals and build a data model that can support them. ">
+<meta name="twitter:site" content="@https://twitter.com/Vertabelo">
+
+
+
+
+<meta property="og:locale" content="en_US">
+
+
+    
+        
+            
+<meta property="og:image" content="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/job.jpg">
+<meta property="og:image:secure_url" content="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/job.jpg">
+<meta property="og:image:width" content="735">
+<meta property="og:image:height" content="450">
+<meta property="og:image:alt" content="&quot;&quot;">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/job.jpg">
+            
+        
+
+
+<meta name="description" content="Across the globe, the job portal site is a well-known feature of the Internet landscape. Big players like Indeed and Monster have turned job hunting and recruiting into a veritable online industry. Let’s dive into the elementary features leveraged by job portals and build a data model that can support them. ">
+
+<meta property="twitter:creator" content="@Vertabelo">
+<link rel="canonical" href="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/">
+
+
+<link rel="icon" href="https://vertabelo.com/blog-img/cropped-logo_Academy_transparent-32x32.png" sizes="32x32">
+<link rel="icon" href="https://vertabelo.com/blog-img/cropped-logo_Academy_transparent-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://vertabelo.com/blog-img/cropped-logo_Academy_transparent-180x180.png">
+<meta name="msapplication-TileImage" content="https://vertabelo.com/blog-img/cropped-logo_Academy_transparent-270x270.png">
+
+
+      
+    
+
+    <link rel="stylesheet" type="text/css" href="./DBMS_design_files/shCore.css"><link rel="stylesheet" type="text/css" href="./DBMS_design_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+    <script type="text/javascript" src="./DBMS_design_files/shCore.js.download"></script>
+<script type="text/javascript" src="./DBMS_design_files/shBrushSql.js.download"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "/blog-css/syntaxhighlighter3/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "/blog-css/syntaxhighlighter3/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+
+    <script type="text/javascript">
+	window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"\/blog-js\/wp-emoji\/wp-emoji-release.min.js?ver=4.9.8"}};
+	!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+</script><script src="./DBMS_design_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+
+    
+      
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5QPZ2NT');
+</script>
+    
+    
+
+  <script type="text/javascript" src="./DBMS_design_files/api.js.download"></script></head>
+
+  <body class="">
+    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QPZ2NT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    
+<header class="site-header sites nav-up">
+<nav role="navigation">
+  <div class="site-navigation">
+    <div class="site-logo">
+      <a href="https://vertabelo.com/" class="site-logo">
+        <img src="./DBMS_design_files/logo_dark.png" alt="Vertabelo">
+      </a>
+    </div>
+    <div class="main-menu">
+      
+        <ul class="">
+          
+            
+            <li class="main-menu__item features"><a href="https://vertabelo.com/features">Features</a></li>
+          
+            
+            <li class="main-menu__item pricing"><a href="https://vertabelo.com/pricing">Pricing</a></li>
+          
+            
+            <li class="main-menu__item academy"><a href="https://vertabelo.com/academy">Academy</a></li>
+          
+            
+            <li class="main-menu__item learnsql"><a href="https://learnsql.com/">Learn SQL</a></li>
+          
+            
+              
+            
+            <li class="main-menu__item login"><a href="https://my.vertabelo.com/login">Log in</a></li>
+          
+            
+              
+            
+            <li class="main-menu__item singup"><a href="https://my.vertabelo.com/sign-up/create-account">Sign up</a></li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    <div class="siteHeaderHome-navigation-layer-menu pages">
+      <span class="siteHeaderHome-navigation-layer-menu-cover">MENU</span>
+      <span class="siteHeaderHome-navigation-layer-menu-cover-active">CLOSE</span>
+    <div class="siteHeaderHome-navigation-layer-menu-icon pages"><input type="checkbox"></div>
+    </div>
+    <div class="siteHeaderHome-navigation-hamburger-wrapper pages">
+      <div class="siteHeaderHome-navigation-hamburger-layout">
+        <ul class="siteHeaderHome-navigation-hamburger">
+          <li class="siteHeaderHome-navigation-hamburger-item pages"><a class="siteHeaderHome-navigation-hamburger-link" href="https://vertabelo.com/" title="Home page">Home</a></li><li class="siteHeaderHome-navigation-hamburger-item"><a class="siteHeaderHome-navigation-hamburger-link" href="https://vertabelo.com/features" title="Features page">Features</a></li>
+          <li class="siteHeaderHome-navigation-hamburger-item"><a class="siteHeaderHome-navigation-hamburger-link" href="https://vertabelo.com/pricing" title="Pricing page">Pricing</a></li>
+          <li class="siteHeaderHome-navigation-hamburger-item"><a class="siteHeaderHome-navigation-hamburger-link" href="https://vertabelo.com/academy" title="Academy page">Academy</a></li>
+          <li class="siteHeaderHome-navigation-hamburger-item"><a class="siteHeaderHome-navigation-hamburger-link" href="https://learnsql.com/" title="Learn SQL page">Learn SQL</a></li>
+          
+        </ul>
+        <ul class="siteHeaderHome-navigation-below">
+          <li class="siteHeaderHome-navigation-below-item"><a class="below-item-link" href="https://my.vertabelo.com/login">Log in</a></li>
+          <li class="siteHeaderHome-navigation-below-item"><a class="button" href="https://my.vertabelo.com/sign-up/create-account">Sign up</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+</nav>
+
+
+
+</header>
+
+
+
+
+    
+
+<div class="site-content post-container" id="sticky_container">
+  <article>
+    <header class="blog-post-intro">
+      
+
+
+
+    
+    
+      
+    
+
+    
+    
+    
+    
+
+
+
+
+<div class="blog-post-featured-image blog-list-feature-image tall" style="background-image:url(&#39;/blog/designing-a-database-for-an-online-job-portal/job.jpg&#39;)">
+
+  
+</div>
+
+
+      <a class="blog-post-intro-link" href="https://vertabelo.com/blog/"><img class="ico_arrow" src="./DBMS_design_files/ico_arrow.png"> <span class="read-more-link">Back to articles list</span></a>
+      <div class="blog-post-header">
+        <span class="ico_clock"><img src="./DBMS_design_files/ico_clock.png"></span>
+        <time class="summary-time" datetime="2016-11-15T00:00:00Z">November 15, 2016</time>
+        <span class="blog-post-reading-time">-</span>
+        <span class="blog-post-reading-time"> 11 minutes read</span>
+        <div class="blog-post-category-header"><a class="blog-post-category" href="https://vertabelo.com/blog/example_er_diagrams">Example er diagrams</a>
+</div>
+        <h1 class="blog-post-header-title">Designing a Database for an Online Job Portal</h1>
+              <div class="summary-blog-post-meta">
+         
+     
+        
+
+  
+  <div class="summary-blog-post-meta-author">
+  
+
+    
+      
+      <a href="https://vertabelo.com/authors/shantanu-kher/">
+        
+        
+        
+        <span class="img summary-blog-post-meta-author-img"><img src="./DBMS_design_files/shantanu-kher_hu8f69a7d5e818f575f110ce21a19e8140_20133_32x32_fill_box_center_2.png" alt=""></span>
+      
+      <span class="summary-blog-post-meta-author-info">
+        <span class="summary-blog-post-meta-author-name">Shantanu Kher</span>
+      <span class="summary-blog-post-meta-author-position"><p>Oracle Database Developer and Designer</p>
+</span>
+      </span>
+      </a>
+  
+
+  </div>
+  
+
+
+</div>
+
+
+        
+<div class="summary-tags">
+  <ul class="summary-tags-list">
+      <div class="summary-tags-title">Tags:</div>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/database-design">database design</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/database-modeling">database modeling</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/example-data-model">example data model</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/example-er-diagram">example ER diagram</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/example-erd-diagram">example ERD diagram</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/database-model">database model</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/template">template</a>
+       </li>
+      
+    </ul>
+</div>
+
+
+        
+ 
+      </div>
+    </header>
+    <div class="blog-post-main blog-post-container" style="position: relative;">
+        <div></div><span class="social_ico is-sticky sticky" id="sticky-ico" style="position: absolute; top: 1734.18px;">
+            
+        </span>
+      <div class="blog-post-main-content">
+<p class="article_lead">Across the globe, the job portal site is a well-known feature of the Internet landscape. Big players like Indeed and Monster have turned job hunting and recruiting into a veritable online industry. Let’s dive into the elementary features leveraged by job portals and build a data model that can support them.</p>
+        
+<p>People love saving time by using technological innovations; the online job portal is another version of working smarter, not harder. Job seekers and companies alike realize the value in taking their search online: they get a better reach at higher speeds and lower costs. </p>
+
+<p>The job portal industry is quite stabilized now, at least in respect to traffic volumes. Job hunters are using these portals to find positions in many industries, moving beyond IT to sectors like engineering, sales, manufacturing, and financial services. However, they are getting tough competition from social media and professional networking sites like LinkedIn. But there are still opportunities to explore, such as expanding their penetration to rural areas and smaller cities.</p>
+
+<p>So as we said, we’re going to explore this topic from a database design perspective. Let’s start with enumerating the fundamental expectations for a job portal. </p>
+
+<h3>What Do People Expect From an Online Job Portal?</h3>
+
+<p>Both employers and job seekers expect the following functionalities from an online job site:</p>
+
+<ul style="margin-top: 10px">
+  <li>People can register as job seekers, build their profiles, and look for jobs matching their skill sets.</li>
+  <li>Users can upload their existing resumes. If they do not have one, they should be able to fill out a form and have a resume built for them. In addition, they should have access to a library of <a href="https://enhancv.com/resume-examples/data-scientist/" target="_blank">resume examples</a> for reference and inspiration.</li>
+  <li>People can apply directly to posted jobs.</li>
+  <li>Companies can register, post jobs, and search job seeker profiles.</li>
+  <li>Multiple representatives from a company should be able to register and post jobs.</li>
+  <li>Company representatives can view a list of job applicants and can contact them, initiative an interview, or perform some other action related to their post.</li>
+  <li>Registered users should be able to search for jobs and filter the results based on location, required skills, salary, experience level, etc.</li>
+</ul>
+
+<h3>Building the Data Model</h3>
+
+<p>After considering the above requirements, I came up with three broad functional categories:</p>
+
+<ol style="margin-top: 10px">
+  <li><strong>Managing Users</strong> – How the portal manages users, i.e. job seekers, HR personnel, and independent or consulting recruiters. (For the purpose of this model, individual HR representatives and independent or consulting recruiters are treated as companies, at least in terms of how they use the portal.)</li>
+  <li><strong>Building Profiles</strong> – How the portal allows job seekers and organizations to create profiles and resumes.</li>
+  <li><strong>Posting and Looking Up Jobs</strong> – How the portal facilitates the process of posting, searching, and applying for jobs.</li>
+</ol>
+
+
+<br>
+
+<script>if (typeof VertabeloEmbededObject === 'undefined') {var VertabeloEmbededObject = "loading";var s=document.createElement("script");s.setAttribute("type","text/javascript");s.setAttribute("src", "https://my.vertabelo.com/js/public-model/v1/api.js");(document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(s);}</script>
+<div class="vertabelo-public-model" data-adjustsize="" data-height="600" data-logotype="created_with" data-modelgid="RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" data-openlabel="EDIT MODEL IN YOUR BROWSER" data-width="735" data-x="4243" data-y="4328" data-zoom="0.4700" data-loaded="yes" style="width: 700px; height: 573.81px;"><div style="position:relative;z-index:1;width:100%;height:100%;overflow:hidden;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;border:1px solid #c6c6c6"><div id="opensvg_RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" style="position:absolute;bottom:0;left:0;width:100%;height:50px;background-color:#eee;text-align:center" class="vertabelo-caption"><div title="EDIT MODEL IN YOUR BROWSER" class="vertabelo-open-button" style="display: inline-block; vertical-align: top; text-align: center; font: 13px / 26px Helvetica, Arial, sans-serif; color: rgb(255, 255, 255); background: rgb(0, 102, 204); margin-top: 10px; padding: 3px 15px; border-radius: 5px; max-width: 449px; height: 25px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer;">EDIT MODEL IN YOUR BROWSER</div></div><div style="display: block; position: absolute; bottom: 13px; right: 10px;"><div id="zoomOut_RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" class="vertabelo-zoom-out-button" style="display:inline-block;vertical-align:top;margin:0px 5px;width:20px;height:20px;cursor:pointer;background: url(&#39;https://my.vertabelo.com/dbwm/24.1.18/img/api/zoom-out-icon.png&#39;) no-repeat center center;"></div><div id="zoomReset_RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" class="vertabelo-reset-zoom-button" style="display:inline-block;vertical-align:top;margin:0px 5px;width:20px;height:20px;cursor:pointer;background: url(&#39;https://my.vertabelo.com/dbwm/24.1.18/img/api/reset-zoom-icon.png&#39;) no-repeat center center;"></div><div id="zoomIn_RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" class="vertabelo-zoom-in-button" style="display:inline-block;vertical-align:top;margin:0px 5px;width:20px;height:20px;cursor:pointer;background: url(&#39;https://my.vertabelo.com/dbwm/24.1.18/img/api/zoom-in-icon.png&#39;) no-repeat center center;"></div></div><div id="logo_RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" style="position:absolute;bottom:0;background-size:contain;background-repeat:no-repeat;width:60px;height:21px;margin-right:15px;margin-bottom:14px;margin-left:15px;background-image:url(&#39;https://my.vertabelo.com/dbwm/24.1.18/img/api/created-big-transparent.png&#39;)"></div><div id="svg_RE7ztJeo2FNDWi9MOZ8T1jdOKiIs2RLXK9PbanvDOkmLyocApCROB5cE07N7MjwJ" style="position:absolute;z-index:-1;top:0;left:0;bottom:50px;width:100%;background:white;cursor:move"><svg xmlns="http://www.w3.org/2000/svg" height="522" width="699" viewBox="-1848 0 4538.678108377635 3389.3991023935987"><desc>{"leftTopX": 4275, "leftTopY": 4416, "rightBottomX": 5775, "rightBottomY": 5413}</desc><g transform="translate(0.5,0.5)"><g class="area"><g transform="translate(60.0,225.0)"><rect fill="#F4CCCC" height="373.0" stroke="#000000" stroke-dasharray="5,5" width="603.0"></rect></g><g transform="translate(67.0,234.0)"><text fill="#000000" font-family="arial, sans-serif" font-size="15" font-weight="700" x="1.0" y="13.986083984375">User Management</text></g></g><g class="area"><g transform="translate(10.0,626.0)"><rect fill="#9FC5E8" height="312.0" stroke="#000000" stroke-dasharray="5,5" width="635.0"></rect></g><g transform="translate(14.0,632.0)"><text fill="#000000" font-family="arial, sans-serif" font-size="15" font-weight="700" x="1.0" y="13.986083984375">Company Profile</text></g></g><g class="area"><g transform="translate(737.0,10.0)"><rect fill="#FFD966" height="469.0" stroke="#000000" stroke-dasharray="5,5" width="753.0"></rect></g><g transform="translate(749.0,17.0)"><text fill="#000000" font-family="arial, sans-serif" font-size="15" font-weight="700" x="1.0" y="13.986083984375">Seeker Profile Builder</text></g></g><g class="area"><g transform="translate(698.0,512.0)"><rect fill="#93C47D" height="475.0" stroke="#000000" stroke-dasharray="5,5" width="658.0"></rect></g><g transform="translate(1190.0,958.0)"><text fill="#000000" font-family="arial, sans-serif" font-size="15" font-weight="700" x="1.0" y="13.986083984375">Job Post Management</text></g></g><g class="reference"><polyline fill="none" points="465.0,388.0 465.0,539.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="465.0" x2="459.0" y1="497.0" y2="512.0"></line><line stroke="#000000" stroke-width="1.0" x1="465.0" x2="471.0" y1="497.0" y2="512.0"></line><g transform="translate(465.0,497.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="459.0" x2="471.0" y1="490.0" y2="490.0"></line></g></g><g class="reference"><polyline fill="none" points="244.0,343.0 301.0,343.0 301.0,344.0 415.0,344.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="321.0" x2="336.0" y1="344.0" y2="338.0"></line><line stroke="#000000" stroke-width="1.0" x1="321.0" x2="336.0" y1="344.0" y2="350.0"></line><g transform="translate(321.0,344.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="301.0" x2="301.0" y1="337.0" y2="349.0"></line></g></g><g class="reference"><polyline fill="none" points="425.0,688.0 425.0,771.0 425.0,771.0 425.0,873.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="425.0" x2="419.0" y1="825.0" y2="840.0"></line><line stroke="#000000" stroke-width="1.0" x1="425.0" x2="431.0" y1="825.0" y2="840.0"></line><g transform="translate(425.0,825.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="419.0" x2="431.0" y1="771.0" y2="771.0"></line></g></g><g class="reference"><polyline fill="none" points="121.0,737.0 425.0,737.0 425.0,721.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="328.0" x2="343.0" y1="737.0" y2="731.0"></line><line stroke="#000000" stroke-width="1.0" x1="328.0" x2="343.0" y1="737.0" y2="743.0"></line><g transform="translate(328.0,737.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="313.0" x2="313.0" y1="731.0" y2="743.0"></line></g></g><g class="reference"><polyline fill="none" points="1322.0,421.0 1322.0,404.0 1044.0,404.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="1209.0" x2="1194.0" y1="404.0" y2="398.0"></line><line stroke="#000000" stroke-width="1.0" x1="1209.0" x2="1194.0" y1="404.0" y2="410.0"></line><g transform="translate(1209.0,404.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="1265.0" x2="1265.0" y1="398.0" y2="410.0"></line></g></g><g class="reference"><polyline fill="none" points="564.0,465.0 818.0,465.0 818.0,720.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="818.0" x2="812.0" y1="669.0" y2="684.0"></line><line stroke="#000000" stroke-width="1.0" x1="818.0" x2="824.0" y1="669.0" y2="684.0"></line><g transform="translate(818.0,669.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="628.0" x2="628.0" y1="459.0" y2="471.0"></line></g></g><g class="reference"><polyline fill="none" points="828.0,893.0 828.0,893.0 828.0,804.0 904.0,804.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="828.0" x2="822.0" y1="858.0" y2="843.0"></line><line stroke="#000000" stroke-width="1.0" x1="828.0" x2="834.0" y1="858.0" y2="843.0"></line><g transform="translate(828.0,858.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="822.0" x2="834.0" y1="868.0" y2="868.0"></line></g></g><g class="reference"><polyline fill="none" points="549.0,702.0 568.0,702.0 568.0,710.0 824.0,710.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="773.0" x2="788.0" y1="710.0" y2="704.0"></line><line stroke="#000000" stroke-width="1.0" x1="773.0" x2="788.0" y1="710.0" y2="716.0"></line><g transform="translate(773.0,710.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><g transform="translate(603.0,710.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g></g><g class="reference"><polyline fill="none" points="588.0,291.0 1044.0,291.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="952.0" x2="967.0" y1="291.0" y2="285.0"></line><line stroke="#000000" stroke-width="1.0" x1="952.0" x2="967.0" y1="291.0" y2="297.0"></line><g transform="translate(952.0,291.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="628.0" x2="628.0" y1="285.0" y2="297.0"></line></g></g><g class="reference"><polyline fill="none" points="572.0,406.0 887.0,406.0 887.0,538.0 876.0,538.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="887.0" x2="881.0" y1="513.0" y2="528.0"></line><line stroke="#000000" stroke-width="1.0" x1="887.0" x2="893.0" y1="513.0" y2="528.0"></line><g transform="translate(887.0,513.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="628.0" x2="628.0" y1="400.0" y2="412.0"></line></g></g><g class="reference"><polyline fill="none" points="909.0,722.0 909.0,578.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="909.0" x2="903.0" y1="616.0" y2="601.0"></line><line stroke="#000000" stroke-width="1.0" x1="909.0" x2="915.0" y1="616.0" y2="601.0"></line><g transform="translate(909.0,616.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="903.0" x2="915.0" y1="669.0" y2="669.0"></line></g></g><g class="reference"><polyline fill="none" points="1403.0,447.0 1403.0,637.0 1185.0,637.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="1283.0" x2="1268.0" y1="637.0" y2="631.0"></line><line stroke="#000000" stroke-width="1.0" x1="1283.0" x2="1268.0" y1="637.0" y2="643.0"></line><g transform="translate(1283.0,637.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="1397.0" x2="1409.0" y1="472.0" y2="472.0"></line></g></g><g class="reference"><polyline fill="none" points="953.0,720.0 1052.0,720.0 1052.0,658.0 1150.0,658.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="1074.0" x2="1089.0" y1="658.0" y2="652.0"></line><line stroke="#000000" stroke-width="1.0" x1="1074.0" x2="1089.0" y1="658.0" y2="664.0"></line><g transform="translate(1074.0,658.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g></g><g class="reference"><polyline fill="none" points="1168.0,885.0 909.0,885.0 909.0,766.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="909.0" x2="903.0" y1="858.0" y2="843.0"></line><line stroke="#000000" stroke-width="1.0" x1="909.0" x2="915.0" y1="858.0" y2="843.0"></line><g transform="translate(909.0,858.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="1104.0" x2="1104.0" y1="879.0" y2="891.0"></line></g></g><g class="reference"><polyline fill="none" points="977.0,283.0 977.0,152.0 993.0,152.0 993.0,79.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="977.0" x2="971.0" y1="203.0" y2="188.0"></line><line stroke="#000000" stroke-width="1.0" x1="977.0" x2="983.0" y1="203.0" y2="188.0"></line><g transform="translate(977.0,203.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="971.0" x2="983.0" y1="211.0" y2="211.0"></line></g></g><g class="reference"><polyline fill="none" points="1179.0,237.0 1256.0,237.0 1256.0,77.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="1256.0" x2="1250.0" y1="216.0" y2="201.0"></line><line stroke="#000000" stroke-width="1.0" x1="1256.0" x2="1262.0" y1="216.0" y2="201.0"></line><g transform="translate(1256.0,216.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="1233.0" x2="1233.0" y1="231.0" y2="243.0"></line></g></g><g class="reference"><polyline fill="none" points="1097.0,310.0 1097.0,398.0 998.0,398.0 998.0,423.0" stroke="#000000" stroke-linejoin="miter"></polyline><g class="cardinality"><line stroke="#000000" stroke-width="1.0" x1="1097.0" x2="1091.0" y1="363.0" y2="378.0"></line><line stroke="#000000" stroke-width="1.0" x1="1097.0" x2="1103.0" y1="363.0" y2="378.0"></line><g transform="translate(1097.0,363.0)"><circle fill="white" r="3.5" stroke="#000000" stroke-width="1.0"></circle></g></g><g class="mandatory"><line stroke="#000000" stroke-width="1.0" x1="1091.0" x2="1103.0" y1="357.0" y2="357.0"></line></g></g><g class="table" transform="translate(336.0,258.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="277.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="139.5" y="14.1888671875">user_account</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="197.0" width="277.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_type_id</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">email</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">password</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date_of_birth</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">gender</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">is_active</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">contact_number</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">sms_notification_active</text></g><g transform="translate(0.0,126.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">email_notification_active</text></g><g transform="translate(0.0,140.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_image</text></g><g transform="translate(0.0,154.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">registration_date</text></g></g><g transform="translate(173.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(255)</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(100)</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number(10)</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,126.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,140.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">blob</text></g><g transform="translate(0.0,154.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g></g><g transform="translate(258.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,126.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,140.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g><g transform="translate(0.0,154.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 277.0,0.0 277.0,20.0 0.0,20.0 0.0,217.0 277.0,217.0 277.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(82.0,304.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="207.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="104.5" y="14.1888671875">user_type</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="60.0" width="207.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_type_name</text></g></g><g transform="translate(111.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(20)</text></g></g><g transform="translate(188.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 207.0,0.0 207.0,20.0 0.0,20.0 0.0,80.0 207.0,80.0 207.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(343.0,644.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="245.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="123.5" y="14.1888671875">company</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="96.0" width="245.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">company_name</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">profile_description</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">business_stream_id</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">establishment_date</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">company_website_url</text></g></g><g transform="translate(133.75,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(100)</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(1000)</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(500)</text></g></g><g transform="translate(226.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 245.0,0.0 245.0,20.0 0.0,20.0 0.0,116.0 245.0,116.0 245.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(355.0,512.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="245.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="123.5" y="14.1888671875">user_log</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="53.0" width="245.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_account_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">last_login_date</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">last_job_apply_date</text></g></g><g transform="translate(159.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g></g><g transform="translate(208.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 245.0,0.0 245.0,20.0 0.0,20.0 0.0,73.0 245.0,73.0 245.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(49.0,687.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="249.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="125.5" y="14.1888671875">business_stream</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="40.0" width="249.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">business_stream_name</text></g></g><g transform="translate(145.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(100)</text></g></g><g transform="translate(230.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 249.0,0.0 249.0,20.0 0.0,20.0 0.0,60.0 249.0,60.0 249.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(967.0,226.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="251.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="126.5" y="14.1888671875">seeker_profile</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="96.0" width="251.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_account_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">first_name</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">last_name</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">current_salary</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">is_annually_monthly</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">currency</text></g></g><g transform="translate(136.75,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g></g><g transform="translate(214.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 251.0,0.0 251.0,20.0 0.0,20.0 0.0,116.0 251.0,116.0 251.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(339.0,840.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="207.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="104.5" y="14.1888671875">company_image</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="53.0" width="207.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">company_id</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">company_image</text></g></g><g transform="translate(139.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">blob</text></g></g><g transform="translate(188.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 207.0,0.0 207.0,20.0 0.0,20.0 0.0,73.0 207.0,73.0 207.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(919.0,378.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="275.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="138.5" y="14.1888671875">seeker_skill_set</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="67.0" width="275.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_account_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">skill_set_id</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">skill_level</text></g></g><g transform="translate(189.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g></g><g transform="translate(238.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 275.0,0.0 275.0,20.0 0.0,20.0 0.0,87.0 275.0,87.0 275.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(1213.0,27.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="256.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="129.0" y="14.1888671875">experience_detail</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="154.0" width="256.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_account_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">is_current_job</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">start_date</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">end_date</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_title</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">company_name</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_location_city</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_location_state</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_location_countr</text></g><g transform="translate(0.0,126.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">description</text></g></g><g transform="translate(126.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(100)</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,126.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(4000)</text></g></g><g transform="translate(219.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,126.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 256.0,0.0 256.0,20.0 0.0,20.0 0.0,174.0 256.0,174.0 256.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(767.0,43.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="289.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="145.5" y="14.1888671875">education_detail</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="125.0" width="289.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_account_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">certificate_degree_name</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">major</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">Institute_university_name</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">starting_date</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">completion_date</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">percentage</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">cgpa</text></g></g><g transform="translate(174.75,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g></g><g transform="translate(252.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">N</text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 289.0,0.0 289.0,20.0 0.0,20.0 0.0,145.0 289.0,145.0 289.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(788.0,684.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="267.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="134.5" y="14.1888671875">job_post</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="139.0" width="267.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">posted_by_id</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_type_id</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">company_id</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">is_company_name_hidden</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">created_date</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_description</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_location_id</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">is_active</text></g></g><g transform="translate(163.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(500)</text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">char(1)</text></g></g><g transform="translate(248.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,84.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,98.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">FK</text></g><g transform="translate(0.0,112.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 267.0,0.0 267.0,20.0 0.0,20.0 0.0,159.0 267.0,159.0 267.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(832.0,528.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="204.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="103.0" y="14.1888671875">job_post_activity</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="53.0" width="204.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">user_account_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_post_id</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">apply_date</text></g></g><g transform="translate(118.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">date</text></g></g><g transform="translate(167.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 204.0,0.0 204.0,20.0 0.0,20.0 0.0,73.0 204.0,73.0 204.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(1089.0,620.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="179.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="90.5" y="14.1888671875">job_post_skill_set</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="53.0" width="179.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">skill_set_id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_post_id</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">skill_level</text></g></g><g transform="translate(93.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g></g><g transform="translate(142.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK FK</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 179.0,0.0 179.0,20.0 0.0,20.0 0.0,73.0 179.0,73.0 179.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(730.0,883.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="163.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="82.5" y="14.1888671875">job_type</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="40.0" width="163.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">job_type</text></g></g><g transform="translate(67.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(20)</text></g></g><g transform="translate(144.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 163.0,0.0 163.0,20.0 0.0,20.0 0.0,60.0 163.0,60.0 163.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(1280.0,386.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="188.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="95.0" y="14.1888671875">skill_set</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="51.0" width="188.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">skill_set_nam</text></g></g><g transform="translate(92.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g></g><g transform="translate(169.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 188.0,0.0 188.0,20.0 0.0,20.0 0.0,71.0 188.0,71.0 188.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g><g class="table" transform="translate(1119.0,814.0)"><g transform="translate(0.0,0.0)"><rect fill="#f0f0f0" height="20.0" width="199.0"></rect></g><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" x="100.5" y="14.1888671875">job_location</text></g><g transform="translate(0.0,20.0)"><rect fill="#ffffff" height="96.0" width="199.0"></rect><g transform="translate(4.0,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">id</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">street_address</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">city</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">state</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">country</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">zip</text></g></g><g transform="translate(95.25,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">number</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(100)</text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">varchar2(50)</text></g></g><g transform="translate(180.5,3.0)"><g transform="translate(0.0,0.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375">PK</text></g><g transform="translate(0.0,14.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,28.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,42.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,56.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g><g transform="translate(0.0,70.0)"><text fill="black" font-family="arial, sans-serif" font-size="12" font-weight="400" x="1.0" y="11.40234375"></text></g></g></g><polyline fill="none" points="0.0,20.0 0.0,0.0 199.0,0.0 199.0,20.0 0.0,20.0 0.0,116.0 199.0,116.0 199.0,20.0" stroke="#000000" stroke-linejoin="miter"></polyline></g></g></svg></div></div></div>
+<br><br>
+
+<p>Let’s look at each of these areas separately.</p>
+
+<h3>1. Managing Users </h3>
+
+
+
+<p style="text-align:center"> 
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <img src="./DBMS_design_files/user-management-subject-area.png" alt="User Management" class="">
+
+ </p>
+
+<p>There are primarily two types of online job portal users: individual job seekers and HR recruiters (or independent recruitment consultants). Let’s create a table named <code><strong>user_type</strong></code> to store these records. To start, it will have two records – one for job seekers and another for recruiters. (We can always create additional record types as needed.)</p>
+
+<p>Users are required to register before they can use the portal. The <code><strong>user_account</strong></code> table stores their basic account details. I earlier considered naming this table “user”, but since user is a system-defined keyword in almost all databases, I prefer to stick with “user_account”. </p>
+
+<p>The <code><strong>user_account</strong></code> table has the following columns:</p>
+
+<ul style="margin-top: 10px">
+  <li><em>id</em> – This is both the table’s primary key and a unique identifier for each user. This ID will be referred to by other tables in the data model.</li>
+  <li><em>user_type_id</em> – This signifies whether the user is a job seeker or a recruiter.</li>
+  <li><em>email</em> – This column holds the user’s email address. It acts as another user ID for the portal.</li>
+  <li><em>password</em> – This stores an encrypted account password (created by users during registration).</li>
+  <li><em>date_of_birth</em> and <em>gender</em> – As their names suggest, these columns hold users’ date of birth and gender.</li>
+  <li><em>is_active</em> – Initially this column would be “Y”, but users can set their profile to inactive, or “N”. This column stores their choice.</li>
+  <li><em>contact_number</em> – This is the phone number (usually mobile) provided during registration. Users can receive SMS (text) notifications on this number. It can be the same number (or not) as the one job seekers list in their profile or resume.</li>
+  <li><em>sms_notification_active</em> and <em>email_notification_active</em> – These columns store users’ preferences regarding receiving notifications through text and/or email.</li>
+  <li><em>user_image</em> – This is a BLOB-type attribute that stores each user’s profile image. Since this portal allows only one profile image per user, it makes sense to store it here.</li>
+  <li><em>registration_date</em> – This column keeps a record of when the user registered with the portal.</li>
+</ul>
+
+<p>We’ll create one more table, <code><strong>user_log</strong></code>, that stores a record of users’ last login date and their last job application date. There are a lot of features which can be built from this knowledge. For example, we can use this information to answer the question <em>Is user X actively looking for a job</em>? If so, they can be offered a product for creating an effective resume. Users who aren’t actively looking for a job would not receive such an offer.</p>
+
+<h3>2. Building Profiles</h3>
+
+<p>We can further divide this section into two areas: company or organizational profiles, and job seeker profiles.</p>
+
+<h4>Company Profiles</h4>
+
+
+
+<p style="text-align:center"> 
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <img src="./DBMS_design_files/company-profile-subject-area.png" alt="Company Profile" class="">
+
+ </p>
+
+<p>Usually HR teams build company profiles by entering details about their organization and images of their offices, buildings, etc. Their main objective is to attract good talent. When recruiters register with the portal, they too can build profiles of their companies (or their personal brand, if they are independent) by providing some basic details like how long they’ve been in business, their location, and their main business stream (e.g. manufacturing, IT services, financial, etc).</p>
+
+<p>The portal allows HR and consulting recruiters to upload as many images as they like (as opposed to job seekers, who can only upload one). Therefore, we’ve created the <code><strong>company_image</strong></code> table to store multiple images for each recruiter account. The <em>company_id</em> column in this table is a foreign key that refers to the unique identifier used in the <code><strong>company</strong></code> table.</p>
+
+<p>In the <code><strong>company</strong></code> table, we have the following columns:</p>
+
+<ul style="margin-top: 10px">
+  <li><em>id</em> – The primary key of this table is also used to uniquely identify companies.</li>
+  <li><em>company_name</em> – As the column name suggests, this holds the legal name of a company.</li>
+  <li><em>profile_description</em> – This contains a brief description of each company.</li>
+  <li><em>business_stream_id</em> – This column depicts which business stream a company belongs to. For an example, an oil and gas exploration company can hire IT engineers , but their main business stream remains “Oil and Gas”.</li>
+  <li><em>establishment_date</em> – This column tells you how old a company is.</li>
+  <li><em>company_website_url</em> – This is a mandatory (non-nullable) column. It holds a pointer to company’s official website so job seekers can find out more information.</li>
+</ul>
+
+<p>Finally, the <code><strong>business_stream</strong></code> table has just two attributes, an id that is the primary key for this table, and a description of the company’s main business stream (<em>business_stream_name</em>).</p>
+
+<h4>Job Seeker Profiles </h4>
+
+
+
+<p style="text-align:center"> 
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <img src="./DBMS_design_files/seeker-profile-builder-subject-area.png" alt="Job seeker profile builder" class="">
+
+ </p>
+
+<p>This is the most critical section of a job portal. Unless a portal captures as many details as possible from job seekers, it is difficult for recruiters to shortlist the profiles or candidates.</p>
+
+<p>The <code><strong>seeker_profile</strong></code> table holds additional details that were not captured during the registration process. It contains these fields:</p>
+
+<ul style="margin-top: 10px">
+  <li><em>user_account_id</em> – This column is referred from the <code><strong>user_account</strong></code> table, and it acts as the primary key for this table. It ensures there will be a maximum of one profile per job seeker.</li>
+  <li><em>first_name</em> and <em>last_name</em> – As the names suggest, these columns hold the job seeker’s first and last names.</li>
+  <li><em>current_salary</em> – This attribute contains the job seeker’s current salary. It is nullable because people may not want to disclose it.</li>
+  <li><em>is_annually_monthly</em> – This defines whether their salary amount is per year or per month.</li>
+  <li><em>currency</em> – This stores the currency of the salary.</li>
+</ul>
+
+<p>The <code><strong>education_detail</strong></code> table stores each job seeker’s educational history, as provided by them. It has a composite primary key made up of the <em>user_account_id</em>, <em>certificate_degree_name</em> and <em>major</em> columns. This ensures that users enter only <strong>one</strong> record for each degree or certificate. The table contains these attributes:</p>
+
+<ul style="margin-top: 10px">
+  <li><em>user_account_id</em> – This column is referred from the <code><strong>user_account</strong></code> table and serves as the primary key for this table.</li>
+  <li><em>certificate_degree_name</em> – This is the certificate or degree type; e.g. high school, higher secondary, graduate, post graduate, or professional certificate.</li>
+  <li><em>major</em> – This column holds the main course of study for the certificate or degree – e.g. a bachelor’s degree with a major in computer science.</li>
+  <li><em>institute_university_name</em> – This is the institute, school, or university that awarded the degree or certificate.</li>
+  <li><em>start_date</em> – This attribute stores the date when the user was accepted into an educational program.</li>
+  <li><em>completion_date</em> – This is the date the degree or certificate was awarded. However, this attribute is nullable; people may still be completing their program while they are looking for a job, or they may have dropped out of the program altogether.</li>
+  <li><em>percentage</em> and <em>cgpa</em> – These columns store the grade percentage or CGPA (cumulative grade point average) attained by users in their degree or certificate course.</li>
+</ul>
+
+<p>
+The <code><strong>experience_detail</strong></code> table keeps records of users’ past and current professional experience. It contains the following important columns: </p>
+
+<ul style="margin-top: 10px">
+  <li><em>user_account_id</em> – This column is referred from the <code><strong>user_account</strong></code> table and is the primary key for this table.</li>
+  <li><em>is_current_job</em> – This is an indicator column that signifies the user’s current job. This column also plays a major role in deriving users’ current locations and how long they’ve held their current position.</li>
+  <li><em>start_date</em> – This stores when a user starts a job.</li>
+  <li><em>end_date</em> – This stores when a user ends a job.</li>
+  <li>job_title – This holds information about the user’s job role.</li>
+  <li><em>company_name</em> – This attributes holds the relevant company name associated with a job.</li>
+  <li><em>job_location_city</em> – This signifies the city where the job was located.</li>
+  <li><em>job_location_state</em> – This signifies the state where the job was located.</li>
+  <li><em>job_location_country</em> – This signifies the country where the job was located.</li>
+  <li><em>description</em> – This column stores details about job roles and responsibilities, challenges, and achievements.</li>
+</ul>
+
+<p>Job seekers can possess multiple skills. To keep records of all of these skill sets, we’ll create the table <code><strong>seeker_skill_set</strong></code>. The columns are:</p>
+
+<ul style="margin-top: 10px">
+  <li><em>user_account_id</em> – This column is referred from the <code><strong>user_account</strong></code> table and is the primary key for this table.</li>
+  <li><em>skill_set_id</em> – This ID signifies which skill set the user possesses.</li>
+  <li><em>skill_level</em> – This numeric attribute quantifies job seekers’ expertise in a particular skill. A number from 1 (beginner) to 10 (expert) indicates their experience level.</li>
+</ul>
+
+<p>Finally, the <code><strong>skill_set</strong></code> table contains descriptions of all the skills referred to in the above table’s <em>skill_set_id</em> attribute. It contains only two columns, a <em>skill_set_name</em> and its related <em>id</em>.</p>
+
+<h3>3. Posting and Looking Up Jobs</h3>
+
+
+
+<p style="text-align:center"> 
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <img src="./DBMS_design_files/job-post-management-subject-area.png" alt="Job post management" class="">
+
+ </p>
+
+<p>This is the main USP (Unique Selling Point) of a job portal. Only registered recruiters are allowed to post a job on the portal and only registered job seekers are allowed to apply to them. </p>
+
+<p>The <code><strong>job_post</strong></code> table is the main table in this subject area. As you might guess, it holds details about job posts. All the other tables in this section are created around it and linked with it.</p>
+
+<ul style="margin-top: 10px">
+  <li><em>id</em> – This is the primary key of this table. Each job post is assigned a unique number, and this number is referred to in other tables.</li>
+  <li><em>posted_by_id</em> – This column holds the <em>register_user_id</em> of the recruiter who has posted the job.</li>
+  <li><em>job_type_id</em> – This column signifies whether the job duration is permanent or temporary (contract).</li>
+  <li><em>company_id</em> – This column stores the ID of the company related to the job post. It is a reference to the <code><strong>company</strong></code> table.</li>
+  <li><em>is_company_name_hidden</em> – This is a flag column that shows if the company’s name should be shown to job seekers. Recruiters may prefer not to show company names on their post. Instead they use terms like ‘Global Automobile Company’, ‘California-Based IT Company’, and so on.</li>
+  <li><em>created_date</em> – This stores the date when the job is posted.</li>
+  <li><em>job_description</em> – This holds a brief description of the job.</li>
+  <li><em>job_location_id</em> – This refers to an attribute in the <code><strong>job_location</strong></code> table that stores the actual location of the job: street address, city, state, country, and postal code.</li>
+  <li><em>is_active</em> – This signifies if a job is still open. Recruiters can mark their posts inactive as soon as the positions are filled.</li>
+</ul>
+
+<p>The <code><strong>job_post_skill_set</strong></code> table stores details about the skill sets required for a job. The table structure is identical to the <code><strong>seeker_skill_set</strong></code> table. </p>
+
+<p>And the last table in this section, the <code><strong>job_post_activity</strong></code> table, holds details about which job seekers apply for a job and when. </p>
+
+<h3>What Would You Add to this Online Job Portal Data Model?</h3>
+
+<p>Today’s online job portals do more than provide a platform to post and apply for jobs. They often include other professional services like:</p>
+
+<ul style="margin-top: 10px">
+  <li>A personal dashboard to keep a track of job applications</li>
+  <li>Real-time updates on applications</li>
+  <li>Video resume builders</li>
+  <li>Expert resume-writing services</li>
+  <li>LinkedIn or other social media profile builders</li>
+  <li>Salary reports across job roles, companies, industries, or geographical locations</li>
+</ul>
+
+<p>If we wanted to build these features into our system, what additional changes would we need to make? Can you think of any other must-haves in a job portal? </p>
+
+<p>Please let us know your views in the comments section.</p>
+        
+      
+<div style="z-index: 100; height: 3px; background-color: rgb(241, 241, 241); position: fixed; width: 100%; top: 0px; left: 0px;"><div style="position: absolute; width: 29.108%; height: 100%; background-color: rgb(0, 109, 255); transition: width 0.3s linear;"></div></div></div>
+    </div>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://google.com/article"
+ },
+ "headline": "Designing a Database for an Online Job Portal",
+ "image": [
+      "https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/job.jpg"
+ ],
+ "datePublished": "2016-11-15T00:00:00+00:00",
+ "dateModified": "2016-11-15T00:00:00+00:00",
+ "author": {
+    "@type": "Person",
+    "name": "Shantanu Kher"
+ },
+ "publisher": {
+    "@type": "Organization",
+    "name": "Vertabelo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://vertabelo.com/blog-img/logo_dark.png"
+    }
+ },
+ "description": "Across the globe, the job portal site is a well-known feature of the Internet landscape. Big players like Indeed and Monster have turned job hunting and recruiting into a veritable online industry. Let’s dive into the elementary features leveraged by job portals and build a data model that can support them. "
+}
+</script>
+
+    <div class="blog-post-tags-below">
+      
+<div class="summary-tags">
+  <ul class="summary-tags-list">
+      <div class="summary-tags-title">Tags:</div>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/database-design">database design</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/database-modeling">database modeling</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/example-data-model">example data model</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/example-er-diagram">example ER diagram</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/example-erd-diagram">example ERD diagram</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/database-model">database model</a>
+       </li>
+      
+       <li class="summary-tags-list-element">
+         <a href="https://vertabelo.com/tags/template">template</a>
+       </li>
+      
+    </ul>
+</div>
+
+
+      
+    </div>
+      <div class="blog-post-newsletter" style="background-image:url(/blog-img/Bg.png)"> 
+         <div class="newsletter_content">
+            <span class="newsletter_title">Subscribe to our newsletter</span>
+            <span class="newsletter_subtitle">Join our weekly newsletter to be <br> notified about the latest posts.</span>
+            <input class="newsletter_email" id="email" placeholder="Email address"> 
+            <a href="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/#" class="button newsletter_button">Subscribe</a>
+         </div>
+      </div> 
+
+    <div class="blog-post-see-also blog-post-container"></div>
+    <div class="post-navigation blog-post-container">
+      
+       
+      
+    </div>
+<div class="related-posts ">
+  <h3>You may also like</h3>
+  <div class="related-posts__content row blog-post-container">
+  
+    
+    
+    
+    <div class="related-posts__item">
+      <a href="https://vertabelo.com/blog/a-database-model-for-a-mooc-platform/">
+      
+        
+        
+          
+        
+        
+        
+        <div class="related-posts__image" style="background-image:url(&#39;/blog/a-database-model-for-a-mooc-platform/online-learning_hu8d24f670c6f3cb1b449489ccc0448139_101146_455x310_fill_q90_box_center.jpg&#39;)"></div>
+        
+      
+      </a><a class="blog-post-category" href="https://vertabelo.com/blog/example_er_diagrams">Example er diagrams</a>
+
+
+      <a href="https://vertabelo.com/blog/a-database-model-for-a-mooc-platform/">
+        <h4>A Database Model for a MOOC Platform</h4>
+      </a>
+      
+      <div class="summary-read-more blog-list"><a class="summary-read-more-link" href="https://vertabelo.com/blog/a-database-model-for-a-mooc-platform/">Read more</a> </div>
+
+    </div>
+    
+  
+    
+    
+    
+    <div class="related-posts__item">
+      <a href="https://vertabelo.com/blog/calling-all-cabs-a-database-model-for-a-taxi-service/">
+      
+        
+        
+          
+        
+        
+        
+        <div class="related-posts__image" style="background-image:url(&#39;/blog/calling-all-cabs-a-database-model-for-a-taxi-service/taxi_hu32a501f0cc19a3c4c8a7b0e708c14ed9_200767_455x310_fill_q90_box_center.jpg&#39;)"></div>
+        
+      
+      </a><a class="blog-post-category" href="https://vertabelo.com/blog/example_er_diagrams">Example er diagrams</a>
+
+
+      <a href="https://vertabelo.com/blog/calling-all-cabs-a-database-model-for-a-taxi-service/">
+        <h4>A Database Model for a Taxi Service</h4>
+      </a>
+      
+      <div class="summary-read-more blog-list"><a class="summary-read-more-link" href="https://vertabelo.com/blog/calling-all-cabs-a-database-model-for-a-taxi-service/">Read more</a> </div>
+
+    </div>
+    
+  
+    
+    
+    
+    <div class="related-posts__item">
+      <a href="https://vertabelo.com/blog/again-and-again-managing-recurring-events-in-a-data-model/">
+      
+        
+        
+          
+        
+        
+        
+        <div class="related-posts__image" style="background-image:url(&#39;/blog/again-and-again-managing-recurring-events-in-a-data-model/schedule_huddc58d5f8e784b6546613647f10df3c7_65481_455x310_fill_q90_box_center.jpg&#39;)"></div>
+        
+      
+      </a><a class="blog-post-category" href="https://vertabelo.com/blog/design_patterns">Design patterns</a>
+
+
+      <a href="https://vertabelo.com/blog/again-and-again-managing-recurring-events-in-a-data-model/">
+        <h4>Again and Again! Managing Recurring Events In a Data Model </h4>
+      </a>
+      
+      <div class="summary-read-more blog-list"><a class="summary-read-more-link" href="https://vertabelo.com/blog/again-and-again-managing-recurring-events-in-a-data-model/">Read more</a> </div>
+
+    </div>
+    
+  
+    
+    
+    
+    <div class="related-posts__item">
+      <a href="https://vertabelo.com/blog/a-data-model-for-listing-apartments-and-other-rental-units/">
+      
+        
+        
+          
+        
+        
+        
+        <div class="related-posts__image" style="background-image:url(&#39;/blog/a-data-model-for-listing-apartments-and-other-rental-units/house-for-rent_hua0cd17af600024c3c6a78837b60f70f6_80875_455x310_fill_q90_box_center.jpg&#39;)"></div>
+        
+      
+      </a><a class="blog-post-category" href="https://vertabelo.com/blog/example_er_diagrams">Example er diagrams</a>
+
+
+      <a href="https://vertabelo.com/blog/a-data-model-for-listing-apartments-and-other-rental-units/">
+        <h4>A Data Model for Listing Apartments and Other Rental Units</h4>
+      </a>
+      
+      <div class="summary-read-more blog-list"><a class="summary-read-more-link" href="https://vertabelo.com/blog/a-data-model-for-listing-apartments-and-other-rental-units/">Read more</a> </div>
+
+    </div>
+    
+  
+    
+    
+    
+    <div class="related-posts__item">
+      <a href="https://vertabelo.com/blog/serving-delicious-food-and-data-a-data-model-for-restaurants/">
+      
+        
+        
+          
+        
+        
+        
+        <div class="related-posts__image" style="background-image:url(&#39;/blog/serving-delicious-food-and-data-a-data-model-for-restaurants/restaurant_hubf3cea974c2c4b6a04323fac118aa08c_95413_455x310_fill_q90_box_center.jpg&#39;)"></div>
+        
+      
+      </a><a class="blog-post-category" href="https://vertabelo.com/blog/example_er_diagrams">Example er diagrams</a>
+
+
+      <a href="https://vertabelo.com/blog/serving-delicious-food-and-data-a-data-model-for-restaurants/">
+        <h4>Serving Delicious Food (and Data) – A Data Model for Restaurants</h4>
+      </a>
+      
+      <div class="summary-read-more blog-list"><a class="summary-read-more-link" href="https://vertabelo.com/blog/serving-delicious-food-and-data-a-data-model-for-restaurants/">Read more</a> </div>
+
+    </div>
+    
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<aside>
+
+
+    </aside>
+  </article>
+
+  <a class="to-top home sticky_scroll" href="https://vertabelo.com/blog/designing-a-database-for-an-online-job-portal/#top" style="display: inline;">
+    <img src="./DBMS_design_files/Arrow.png" alt="go to top">
+</a>
+</div>
+
+
+
+
+  
+    
+
+
+<footer class="site-footer" id="footer" role="contentinfo">
+ 
+  <h3 class="screen-reader-text">Site Footer</h3>
+  <div class="site-footer__content">
+    <div class="site-footer__container">
+        <img class="site-footer_signet" src="./DBMS_design_files/Signet Vertabelo.png">
+        <div class="site-footer__row ">
+          <h4 class="site-footer__section-header">Quick links</h4>
+          <div class="site-footer__textwidget-quicklinks">
+            <span class="left-column">
+              <a class="site-footer__footer-link" href="https://vertabelo.com/blog" title="Designing a Database for an Online Job Portal page">Vertabelo Blog</a><br>
+              <a class="site-footer__footer-link" href="https://vertabelo.com/documentation">Documentation</a><br>
+              <a class="site-footer__footer-link" href="https://vertabelo.com/pricing/#faq">FAQ</a><br>
+            </span>
+            <span class="right-column">
+              <a class="site-footer__footer-link" href="https://vertabelo.com/features">Features</a><br>
+              <a class="site-footer__footer-link" href="https://vertabelo.com/pricing">Pricing</a><br>
+              <a class="site-footer__footer-link" href="https://vertabelo.com/academy">Academy</a><br>
+            </span>
+          </div>
+        </div>
+        <div class="site-footer__row ">
+          <h4 class="site-footer__section-header">Support</h4>
+          <div class="site-footer__textwidget-support">If you have any questions or you need our help, you can contact us through
+            our </div>
+         <a class="site-footer__button-support site-footer__footer-link" href="http://support.vertabelo.com/">Support site</a>
+        </div>
+        <div class="site-footer__row ">
+          <h4 class="site-footer__section-header">Follow Us</h4>
+          <span class="site-footer__section-header-social">
+            <a class="site-footer__section-header-footer-followus" href="https://twitter.com/vertabelo"> <img src="./DBMS_design_files/twitter.png"></a>
+            <a class="site-footer__section-header-footer-followus" href="https://plus.google.com/+Vertabelo"> <img src="./DBMS_design_files/google+.png"></a>
+            <a class="site-footer__section-header-footer-followus" href="https://www.youtube.com/user/vertabelo/featured">
+              <img src="./DBMS_design_files/youtube.png"></a>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  
+  <div class="site-footer__horizontal-bar"></div>
+  <div class="row site-footer__credits">
+
+    <div class="site-footer__credits-copy"> Copyright ©2013-2018 <a class="site-footer__footer-link-active" href="http://www.vertabelo.com/">Vertabelo SA</a> All rights reserved </div>
+    <div class="site-footer__credits-terms">
+      <a class="site-footer__footer-link terms" href="https://vertabelo.com/terms-of-service.pdf">Terms of Service</a>
+      <a class="site-footer__footer-link terms" href="https://vertabelo.com/privacy-policy.pdf">Privacy Policy</a>
+      <a class="site-footer__footer-link terms" href="https://vertabelo.com/imprint">Imprint</a>
+      <a class="site-footer__footer-link terms" href="https://vertabelo.com/investor-relations">Investor relations</a>
+    </div>
+  </div>
+  
+  
+  
+  
+
+</footer>
+
+
+    <div class="cookies cookies--hidden">
+      <div class="cookies__icon">
+        <img src="./DBMS_design_files/cookies.svg" alt="" xmlns="http://www.w3.org/2000/svg">
+      </div>
+      <p class="cookies__text">
+        Our website uses cookies. By using this website, you agree to their use in accordance with the browser settings.
+        You can modify your browser settings on your own.
+        For more information see our <a href="https://vertabelo.com/privacy-policy.pdf" class="cookies__link">Privacy Policy</a>.
+      </p>
+      <button class="button cookies__button">OK</button>
+    </div><iframe allow="join-ad-interest-group" data-tagging-id="G-MLK66T4056" data-load-time="1726546241195" height="0" width="0" src="./DBMS_design_files/rul.html" style="display: none; visibility: hidden;"></iframe><iframe allow="join-ad-interest-group" data-tagging-id="G-MLK66T4056" data-load-time="1726546529362" height="0" width="0" src="./DBMS_design_files/rul(1).html" style="display: none; visibility: hidden;"></iframe>
+
+  
+
+</body></html>

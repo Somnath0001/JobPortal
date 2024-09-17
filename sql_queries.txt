@@ -1,0 +1,58 @@
+-- database: job_portal
+
+-- create user_type table:
+CREATE TABLE `job_portal`.`user_type` (`id` INT NOT NULL , `user_type_name` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- create user_account table:
+CREATE TABLE `job_portal`.`user_account` (`id` INT NOT NULL , `user_type_id` INT NOT NULL , `email` VARCHAR(255) NOT NULL , `password` VARCHAR(100) NOT NULL , `date_of_birth` DATE NOT NULL , `gender` CHAR(1) NOT NULL , `is_active` CHAR(1) NOT NULL , `contact_number` INT(10) NOT NULL , `sms_notification_active` CHAR(1) NOT NULL , `email_notification_active` CHAR(1) NOT NULL , `user_image` BLOB , `registration_date` DATE NOT NULL , PRIMARY KEY (`id`) , FOREIGN KEY (user_type_id) REFERENCES user_type(id)) ENGINE = InnoDB;
+
+-- create user_log table:
+CREATE TABLE `job_portal`.`user_log` (`user_account_id` INT NOT NULL , `last_login_date` DATE NOT NULL , `last_job_apply_date` DATE , PRIMARY KEY (`user_account_id`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id)) ENGINE = InnoDB;
+
+-- create business_stream table:
+CREATE TABLE `job_portal`.`business_stream` (`id` INT NOT NULL , `business_stream_name` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- create company table:
+CREATE TABLE `job_portal`.`company` (`id` INT NOT NULL , `company_name` VARCHAR(100) NOT NULL , `profile_description` VARCHAR(1000) NOT NULL , `business_stream_id` INT NOT NULL , `establishment_date` DATE NOT NULL , `company_website_url` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`) , FOREIGN KEY (business_stream_id) REFERENCES business_stream(id)) ENGINE = InnoDB;
+
+-- create company_image table:
+CREATE TABLE `job_portal`.`company_image` (`id` INT NOT NULL , `company_id` INT NOT NULL , `company_image` BLOB NOT NULL , PRIMARY KEY (`id`) , FOREIGN KEY (company_id) REFERENCES company(id)) ENGINE = InnoDB;
+
+-- create seeker_profile table:
+CREATE TABLE `job_portal`.`seeker_profile` (`user_account_id` INT NOT NULL , `first_name` VARCHAR(50) NOT NULL , `last_name` VARCHAR(50) NOT NULL , `current_salary` INT , `is_anually_monthly` CHAR(1) , `currency` VARCHAR(50) , PRIMARY KEY (`user_account_id`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id)) ENGINE = InnoDB;
+
+-- create education_detail table:
+CREATE TABLE `job_portal`.`education_detail` (`user_account_id` INT NOT NULL , `certificate_degree_name` VARCHAR(50) NOT NULL , `major` VARCHAR(50) NOT NULL , `institute_university_name` VARCHAR(50) NOT NULL , `starting_date` DATE NOT NULL , `completion_date` DATE , `percentage` INT , `cgpa` INT , PRIMARY KEY (`user_account_id`, `certificate_degree_name`, `major`), FOREIGN KEY (user_account_id) REFERENCES user_account(id)) ENGINE = InnoDB;
+
+-- create experience_detail table:
+CREATE TABLE `job_portal`.`experience_details` (`user_account_id` INT NOT NULL , `is_current_job` CHAR(1) NOT NULL , `start_date` DATE NOT NULL , `end_date` DATE NOT NULL , `job_title` VARCHAR(50) NOT NULL , `company_name` VARCHAR(100) NOT NULL , `job_location_city` VARCHAR(50) NOT NULL , `job_location_state` VARCHAR(50) NOT NULL , `job_location_country` VARCHAR(50) NOT NULL , `description` VARCHAR(4000) NOT NULL , PRIMARY KEY (`user_account_id`, `start_date`, `end_date`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id)) ENGINE = InnoDB;
+
+-- create skill_set table:
+CREATE TABLE `job_portal`.`skill_set` (`id` INT NOT NULL , `skill_set_name` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- create seeker_skill_set table:
+CREATE TABLE `job_portal`.`seeker_skill_set` (`user_account_id` INT NOT NULL , `skill_set_id` INT NOT NULL , `skill_level` INT NOT NULL , PRIMARY KEY (`user_account_id`, `skill_set_id`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id) , FOREIGN KEY (skill_set_id) REFERENCES skill_set(id)) ENGINE = InnoDB;
+
+-- create job_type table:
+CREATE TABLE `job_portal`.`job_type` (`id` INT NOT NULL , `job_type` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- create job_location table:
+CREATE TABLE `job_portal`.`job_location` (`id` INT NOT NULL , `street_address` VARCHAR(100) NOT NULL , `city` VARCHAR(50) NOT NULL , `state` VARCHAR(50) NOT NULL , `country` VARCHAR(50) NOT NULL , `zip` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+-- create job_post table:
+CREATE TABLE `job_portal`.`job_post` (`id` INT NOT NULL , `posted_by_id` INT NOT NULL , `job_type_id` INT NOT NULL , `company_id` INT NOT NULL , `is_company_name_hidden` CHAR(1) NOT NULL , `created_date` DATE NOT NULL , `job_description` VARCHAR(500) NOT NULL , `job_location_id` INT NOT NULL , `is_active` CHAR(1) NOT NULL , PRIMARY KEY (`id`) , FOREIGN KEY (posted_by_id) REFERENCES user_account(id) , FOREIGN KEY (job_type_id) REFERENCES job_type(id) , FOREIGN KEY (company_id) REFERENCES company(id) , FOREIGN KEY (job_location_id) REFERENCES job_location(id)) ENGINE = InnoDB;
+
+-- create job_post_skill_set table:
+CREATE TABLE `job_portal`.`job_post_skill_set` (`skill_set_id` INT NOT NULL , `job_post_id` INT NOT NULL , `skill_level` INT NOT NULL , PRIMARY KEY (`skill_set_id`, `job_post_id`) , FOREIGN KEY (skill_set_id) REFERENCES skill_set(id) , FOREIGN KEY (job_post_id) REFERENCES job_post(id)) ENGINE = InnoDB;
+
+
+
+
+
+
+
+
+
+
+
+
