@@ -45,6 +45,8 @@ CREATE TABLE `job_portal`.`job_post` (`id` INT NOT NULL , `posted_by_id` INT NOT
 -- create job_post_skill_set table:
 CREATE TABLE `job_portal`.`job_post_skill_set` (`skill_set_id` INT NOT NULL , `job_post_id` INT NOT NULL , `skill_level` INT NOT NULL , PRIMARY KEY (`skill_set_id`, `job_post_id`) , FOREIGN KEY (skill_set_id) REFERENCES skill_set(id) , FOREIGN KEY (job_post_id) REFERENCES job_post(id)) ENGINE = InnoDB;
 
+-- create job_post_activity table:
+CREATE TABLE `job_portal`.`job_post_activity` (`user_account_id` INT NOT NULL , `job_post_id` INT NOT NULL , `apply_date` DATE NOT NULL , PRIMARY KEY (`user_account_id`, `job_post_id`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id) , FOREIGN KEY (job_post_id) REFERENCES job_post(id)) ENGINE = InnoDB;
 
 
 
