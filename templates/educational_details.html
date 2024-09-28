@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Details</title>
+    <link rel="stylesheet" type="text/css" href="css/job_seeker_profile.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Educational Details</h2>
+            <form>
+                <div class="input-box">
+                    <label for="certificate-name">Certificate/Degree Name:</label>
+                    <input type="text" id="certificate-name" required>
+                </div>
+                <div class="input-box">
+                    <label for="major">Major:</label>
+                    <input type="text" id="major" required>
+                </div>
+                <div class="input-box">
+                    <label for="institute-name">Institute/University Name:</label>
+                    <input type="text" id="institute-name" required>
+                </div>
+                <div class="input-box">
+                    <label for="degree-start-date">Degree Starting Date:</label>
+                    <input type="date" id="degree-start-date" required>
+                </div>
+                <div class="input-box">
+                    <label for="degree-completion-date">Degree Completion Date (Optional):</label>
+                    <input type="date" id="degree-completion-date">
+                </div>
+                <div class="input-box">
+                    <label for="percentage-obtained">Percentage Obtained (Optional):</label>
+                    <input type="number" id="percentage-obtained">
+                </div>
+                <div class="input-box">
+                    <label for="cgpa">CGPA (Optional):</label>
+                    <input type="number" id="cgpa" step="0.01">
+                </div>
+                <div class="button-box">
+                    <button type="button" class="save-button">Save</button>
+                    <button type="button" class="next-button">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/educational_details.js"></script>
+</body>
+</html>

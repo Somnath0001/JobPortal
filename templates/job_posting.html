@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Posting</title>
+    <link rel="stylesheet" type="text/css" href="css/job_posting.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Job Posting</h2>
+            <form>
+                <div class="input-box">
+                    <label for="job-type">Select Job Type:</label>
+                    <select id="job-type" required>
+                        <option value="">Select Job Type</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Contract">Contract</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="company-name">Select Company:</label>
+                    <select id="company-name" required>
+                        <option value="">Select Company</option>
+                        <!-- Populate company options from database or API -->
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="hide-company-name">Hide Company Name?</label>
+                    <div>
+                        <input type="radio" id="hide-company-name-yes" name="hide-company-name" value="Yes">
+                        <label for="hide-company-name-yes">Yes</label>
+                        <input type="radio" id="hide-company-name-no" name="hide-company-name" value="No" checked>
+                        <label for="hide-company-name-no">No</label>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="job-description">Job Description:</label>
+                    <textarea id="job-description" required></textarea>
+                </div>
+                <div class="input-box">
+                    <label for="job-location">Select Job Location:</label>
+                    <select id="job-location" required>
+                        <option value="">Select Job Location</option>
+                        <option value="Office">Office</option>
+                        <option value="Remote">Remote</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="street-address">Street Address:</label>
+                    <input type="text" id="street-address" required>
+                </div>
+                <div class="input-box">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="input-box">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" required>
+                </div>
+                <div class="input-box">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" required>
+                </div>
+                <div class="input-box">
+                    <label for="zip-code">Zip Code:</label>
+                    <input type="text" id="zip-code" required>
+                </div>
+                <div class="input-box">
+                    <label for="required-skills">Select multiple Skill Required:</label>
+                    <select id="required-skills" multiple required>
+                        <!-- Populate skill options from database or API -->
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="required-skill-level">Choose multiple Skill Level:</label>
+                    <select id="required-skill-level" multiple required>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Expert">Expert</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="experience-required">Experience Required (in Years):</label>
+                    <input type="number" id="experience-required" required>
+                </div>
+                <div class="input-box">
+                    <label for="salary-offered">Salary Offered:</label>
+                    <input type="number" id="salary-offered" required>
+                </div>
+                <div class="input-box">
+                    <label for="apply-date">Apply Date:</label>
+                    <input type="date" id="apply-date" required>
+                </div>
+                <div class="button-box">
+                    <button type="button" class="save-button">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/job_posting.js"></script>
+</body>
+</html>

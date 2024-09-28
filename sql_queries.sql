@@ -62,16 +62,24 @@ ADD COLUMN experience_required INT;
 ALTER TABLE user_account 
 ADD COLUMN name VARCHAR(50) NOT NULL AFTER password;
 
+-- change contact_number from INT type to VARCHAR type
+ALTER TABLE `user_account` CHANGE `contact_number` `contact_number` VARCHAR(10) NOT NULL;
+
+
 -- adding AUTO_INCREMENT in tables
 -- ALTER TABLE <table name> AUTO_INCREMENT = 1;
 ALTER TABLE user_type AUTO_INCREMENT = 1;
-ALTER TABLE user_account AUTO_INCREMENT = 1;
+ALTER TABLE user_account CHANGE id id INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE business_stream AUTO_INCREMENT = 1;
 ALTER TABLE company AUTO_INCREMENT = 1;
 ALTER TABLE skill_set AUTO_INCREMENT = 1;
 ALTER TABLE job_type AUTO_INCREMENT = 1;
 ALTER TABLE job_location AUTO_INCREMENT = 1;
 ALTER TABLE job_post AUTO_INCREMENT = 1;
+
+-- check table structure
+DESCRIBE user_account;
+
 
 /*
 Suggestions:
@@ -138,7 +146,29 @@ CREATE TABLE `job_portal`.`job_application_status` (
 ) ENGINE = InnoDB;
 
 
+-- insert to user_type
+INSERT INTO `user_type`(`id`, `user_type_name`) VALUES ('1','job_seeker');
+INSERT INTO `user_type`(`id`, `user_type_name`) VALUES ('2','recruiter');
 
+-- dummy values in user_account table
+INSERT INTO `job_portal`.`user_account` 
+(`id`, `user_type_id`, `email`, `password`, `name`, `date_of_birth`, `gender`, `is_active`, `contact_number`, `sms_notification_active`, `email_notification_active`, `registration_date`)
+VALUES
+
+(1, 1, 'john.doe@example.com', 'password123', 'John Doe', '1990-02-12', 'M', 'Y', 9876543210, 'Y', 'Y', '2022-01-01'),
+(2, 2, 'jane.smith@example.com', 'password456', 'Jane Smith', '1992-08-25', 'F', 'Y', 7418529630, 'N', 'Y', '2022-02-15'),
+(3, 1, 'bob.johnson@example.com', 'password789', 'Bob Johnson', '1985-04-01', 'M', 'Y', 9638527410, 'Y', 'N', '2022-03-20'),
+(4, 2, 'alice.williams@example.com', 'password012', 'Alice Williams', '1995-10-12', 'F', 'Y', 8527419630, 'N', 'Y', '2022-04-10'),
+(5, 1, 'mike.davis@example.com', 'password345', 'Mike Davis', '1980-06-15', 'M', 'Y', 7418529630, 'Y', 'Y', '2022-05-25'),
+(6, 2, 'emma.taylor@example.com', 'password678', 'Emma Taylor', '1991-03-22', 'F', 'Y', 9638527410, 'N', 'N', '2022-06-01'),
+(7, 1, 'david.lee@example.com', 'password901', 'David Lee', '1988-09-18', 'M', 'Y', 8527419630, 'Y', 'Y', '2022-07-12'),
+(8, 2, 'sophia.patel@example.com', 'password234', 'Sophia Patel', '1993-11-25', 'F', 'Y', 7418529630, 'N', 'Y', '2022-08-20'),
+(9, 1, 'peter.brown@example.com', 'password567', 'Peter Brown', '1975-01-01', 'M', 'Y', 9638527410, 'Y', 'N', '2022-09-15'),
+(10, 2, 'olivia.martin@example.com', 'password890', 'Olivia Martin', '1996-05-10', 'F', 'Y', 8527419630, 'N', 'Y', '2022-10-01');
+
+
+-- dummy for user_account table
+INSERT INTO `user_account`(`user_type_id`, `email`, `password`, `name`, `date_of_birth`, `gender`, `is_active`, `contact_number`, `sms_notification_active`, `email_notification_active`, `user_image`, `registration_date`) VALUES (1,'som@email.com','som@pass', 'Somnath Maity', '2024-09-28','M','Y','9234343434','Y','Y','','2024-09-28')
 
 
 

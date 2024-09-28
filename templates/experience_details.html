@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Details</title>
+    <link rel="stylesheet" type="text/css" href="css/job_seeker_profile.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Experience Details</h2>
+            <form>
+                <div class="input-box">
+                    <label for="company-name">Company Name:</label>
+                    <input type="text" id="company-name" required>
+                </div>
+                <div class="input-box">
+                    <label for="job-title">Job Title:</label>
+                    <input type="text" id="job-title" required>
+                </div>
+                <div class="input-box">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" required>
+                </div>
+                <div class="input-box">
+                    <label for="end-date">End Date:</label>
+                    <input type="date" id="end-date">
+                </div>
+                <div class="input-box">
+                    <label for="description">Description:</label>
+                    <textarea id="description" required></textarea>
+                </div>
+                <div class="button-box">
+                    <button type="button" class="add-experience-button">Add Experience</button>
+                    <button type="button" class="save-button">Save</button>
+                    <button type="button" class="next-button">Next</button>
+                </div>
+                <div id="added-experiences"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/experience_details.js"></script>
+</body>
+</html>
