@@ -4,6 +4,16 @@
 4. Company Profile Page - HR recruiter will build this
 5. Job Posting Page - Company will post jobs
 6. Job Listing Page - Jobs will be listed based on job seeker's filters.
+7. User Dashboard Page - 
+        Job Seeker:
+            build Job Seeker Profile
+            visit Job Posting Page 
+            check status of last applied jobs - Application Tracking
+        Recruiter:
+            build company profile 
+            post jobs 
+            track applications
+                         
 
 
 Login Page:

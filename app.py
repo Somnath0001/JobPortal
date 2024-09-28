@@ -18,7 +18,8 @@ def login_handler():
 
     # validate login
     if validateUser(email, password):
-        return f"Welcome {email}! you've logged in."
+        # return f"Welcome {email}! you've logged in."
+        return render_template('user_dashboard.html')
     else:
         return '<p>Login Falied. <a href="/login">login</a></p>'
 
@@ -30,6 +31,26 @@ def register():
 @app.route("/login")
 def login():
     return render_template('index.html')
+
+@app.route("/user_dashboard")
+def user_dashboard():
+    return render_template('user_dashboard.html')
+
+@app.route("/job_seeker_profile")
+def job_seeker_profile():
+    return render_template('job_seeker_profile.html')
+
+@app.route("/educational_details")
+def educational_details():
+    return render_template('educational_details.html')
+
+@app.route("/skills")
+def skills():
+    return render_template('skills.html')
+
+@app.route("/experience_details")
+def experience_details():
+    return render_template('experience_details.html')
 
 @app.route("/register_handler", methods=['POST'])
 def register_handler():

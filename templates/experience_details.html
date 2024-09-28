@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experience Details</title>
-    <link rel="stylesheet" type="text/css" href="css/job_seeker_profile.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/job_seeker_profile.css') }}">
 </head>
 <body>
     <div class="container">
@@ -33,14 +33,16 @@
                 </div>
                 <div class="button-box">
                     <button type="button" class="add-experience-button">Add Experience</button>
-                    <button type="button" class="save-button">Save</button>
-                    <button type="button" class="next-button">Next</button>
+                    <button type="submit" class="save-button">Save</button>
+                    <a href="">
+                        <button type="button" class="next-button">Next</button>
+                    </a>
                 </div>
                 <div id="added-experiences"></div>
             </form>
         </div>
     </div>
 
-    <script src="js/experience_details.js"></script>
+    <script src="{{ url_for('static', filename='js/job_seeker_profile.js') }}"></script>
 </body>
 </html>

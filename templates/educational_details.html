@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educational Details</title>
-    <link rel="stylesheet" type="text/css" href="css/job_seeker_profile.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/job_seeker_profile.css') }}">
 </head>
 <body>
     <div class="container">
@@ -40,13 +40,15 @@
                     <input type="number" id="cgpa" step="0.01">
                 </div>
                 <div class="button-box">
-                    <button type="button" class="save-button">Save</button>
-                    <button type="button" class="next-button">Next</button>
+                    <button type="submit" class="save-button">Save</button>
+                    <a href="/skills">
+                        <button type="button" class="next-button">Next</button>
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 
-    <script src="js/educational_details.js"></script>
+    <script src="{{ url_for('static', filename='js/job_seeker_profile.js') }}"></script>
 </body>
 </html>
