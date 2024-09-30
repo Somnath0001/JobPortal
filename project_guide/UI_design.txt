@@ -5,11 +5,11 @@
 5. Job Posting Page - Company will post jobs
 6. Job Listing Page - Jobs will be listed based on job seeker's filters.
 7. User Dashboard Page - 
-        Job Seeker:
+        Job Seeker:    (job_seeker_dashboard)
             build Job Seeker Profile
             visit Job Posting Page 
             check status of last applied jobs - Application Tracking
-        Recruiter:
+        Recruiter:     (recruiter_dashboard)
             build company profile 
             post jobs 
             track applications
@@ -145,6 +145,12 @@ Posted by
 Industry 
 Top companies
 
+
+Flow of Pages:
+--------------
+Login -> Register -> Login
+Login -> job_seeker_dashboard ->
+  '----> recruiter_dashboard ->   
 
 Should be implemented:
 ----------------------

@@ -1,0 +1,9 @@
+1. [done] write code to detect user_type after login and launch corresponding user_type_dashboard page 
+            create recruiter_dashboard.html page
+            modify user_dashboard to job_seeker_dashboard.html
+            write get_user_type() in databaase.py 
+            write code in login() to render corresponding user dashboard
+            (2024-09-30 14:32:00)
+            (2024-09-30 14:43:36) - done
+2. UI and backend DB code for company_details
+3. 

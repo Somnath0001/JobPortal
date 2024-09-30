@@ -7,6 +7,7 @@ from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
 from experience_details_handler import handle_experience_details
+from database import get_user_type_id
 
 app = Flask(__name__)
 
@@ -30,7 +31,13 @@ def login_handler():
         update_id(id)
         # print(get_id())
 
-        return render_template('user_dashboard.html')
+        # Now based on user_type, let's render corresponding user dashboard page
+        user_type_id = get_user_type_id(id)
+        print(f"user_type_id: {user_type_id}")
+        if (user_type_id == 1):
+            return render_template('job_seeker_dashboard.html')
+        elif (user_type_id == 2):
+            return render_template('recruiter_dashboard.html')
     else:
         return '<p>Login Falied. <a href="/login">login</a></p>'
 
@@ -69,6 +76,11 @@ def skills():
 @app.route("/experience_details")
 def experience_details():
     return render_template('experience_details.html')
+
+# render company.html page
+@app.route("/company_profile")
+def company_profile():
+    return render_template('company.html')
 
 # handle registration when user clicks submit button
 @app.route("/register_handler", methods=['POST'])

@@ -71,7 +71,14 @@ def add_experience_details(id, company_name, currently_working, job_title, start
     db.commit()
     db.close()
 
-
+def get_user_type_id(user_account_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT user_type_id FROM user_account WHERE id = %s"
+    cursor.execute(query, (user_account_id, ))
+    result = cursor.fetchone()[0]
+    db.close()
+    return result
 
 
 def get_cars():
