@@ -10,34 +10,34 @@
     <div class="container">
         <div class="card">
             <h2>Educational Details</h2>
-            <form>
+            <form action="/educational_details_handler" method="POST">
                 <div class="input-box">
                     <label for="certificate-name">Certificate/Degree Name:</label>
-                    <input type="text" id="certificate-name" required>
+                    <input type="text" id="certificate-name" name="certificate-name" required>
                 </div>
                 <div class="input-box">
                     <label for="major">Major:</label>
-                    <input type="text" id="major" required>
+                    <input type="text" id="major" name="major" required>
                 </div>
                 <div class="input-box">
                     <label for="institute-name">Institute/University Name:</label>
-                    <input type="text" id="institute-name" required>
+                    <input type="text" id="institute-name" name="institute-name" required>
                 </div>
                 <div class="input-box">
                     <label for="degree-start-date">Degree Starting Date:</label>
-                    <input type="date" id="degree-start-date" required>
+                    <input type="date" id="degree-start-date" name="degree-start-date" required>
                 </div>
                 <div class="input-box">
                     <label for="degree-completion-date">Degree Completion Date (Optional):</label>
-                    <input type="date" id="degree-completion-date">
+                    <input type="date" id="degree-completion-date" name="degree-completion-date">
                 </div>
                 <div class="input-box">
                     <label for="percentage-obtained">Percentage Obtained (Optional):</label>
-                    <input type="number" id="percentage-obtained">
+                    <input type="number" id="percentage-obtained" name="percentage-obtained">
                 </div>
                 <div class="input-box">
                     <label for="cgpa">CGPA (Optional):</label>
-                    <input type="number" id="cgpa" step="0.01">
+                    <input type="number" id="cgpa" name="cgpa" step="0.01">
                 </div>
                 <div class="button-box">
                     <button type="submit" class="save-button">Save</button>

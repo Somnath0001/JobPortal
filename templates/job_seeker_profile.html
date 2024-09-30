@@ -10,22 +10,22 @@
     <div class="container">
         <div class="card">
             <h2>Job Seeker Profile</h2>
-            <form>
+            <form action="/job_seeker_profile_handler" method="POST">
                 <div class="input-box">
                     <label for="first-name">First Name:</label>
-                    <input type="text" id="first-name" required>
+                    <input type="text" id="first-name" name="first_name" required>
                 </div>
                 <div class="input-box">
                     <label for="last-name">Last Name:</label>
-                    <input type="text" id="last-name" required>
+                    <input type="text" id="last-name" name="last_name" required>
                 </div>
                 <div class="input-box">
                     <label for="current-salary">Current Salary (Optional):</label>
-                    <input type="number" id="current-salary">
+                    <input type="number" id="current-salary" name="current_salary">
                 </div>
                 <div class="input-box">
                     <label for="salary-frequency">Select Frequency (Optional):</label>
-                    <select id="salary-frequency">
+                    <select id="salary-frequency" name="salary_frequency">
                         <option value="">Select Frequency</option>
                         <option value="Annually">Annually</option>
                         <option value="Monthly">Monthly</option>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="input-box">
                     <label for="currency">Currency (Optional):</label>
-                    <select id="currency">
+                    <select id="currency" name="currency">
                         <option value="">Select Currency</option>
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
@@ -41,7 +41,7 @@
                     </select>
                 </div>
                 <div class="button-box">
-                    <button type="submit" class="save-button">Save</button>
+                    <button type="submit">Save</button>
                     <a href="/educational_details">
                         <button type="button" class="next-button">Next</button>
                     </a>

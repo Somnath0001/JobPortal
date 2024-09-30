@@ -10,26 +10,54 @@
     <div class="container">
         <div class="card">
             <h2>Experience Details</h2>
-            <form>
+            <form action="/experience_details_handler" method="POST">
                 <div class="input-box">
                     <label for="company-name">Company Name:</label>
-                    <input type="text" id="company-name" required>
+                    <input type="text" id="company-name" name="company-name" required>
+                </div>
+                <div class="input-box">
+                    <label for="currently-working">Are you currently working in the above?:</label>
+                    <select id="currently-working" name="currently-working">
+                        <option value="Y">Yes</option>
+                        <option value="N">No</option>
+                    </select>
                 </div>
                 <div class="input-box">
                     <label for="job-title">Job Title:</label>
-                    <input type="text" id="job-title" required>
+                    <input type="text" id="job-title" name="job-title" required>
                 </div>
                 <div class="input-box">
                     <label for="start-date">Start Date:</label>
-                    <input type="date" id="start-date" required>
+                    <input type="date" id="start-date" name="start-date" required>
                 </div>
                 <div class="input-box">
                     <label for="end-date">End Date:</label>
-                    <input type="date" id="end-date">
+                    <input type="date" id="end-date" name="end-date">
                 </div>
                 <div class="input-box">
                     <label for="description">Description:</label>
-                    <textarea id="description" required></textarea>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="input-box">
+                    <label for="business-stream">Business Stream:</label>
+                    <select id="business-stream" name="business-stream">
+                        <option value="0">IT</option>
+                        <option value="1">Logistics</option>
+                        <option value="2">Bank</option>
+                        <option value="3">E-commerce</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="city">City:</label>
+                    <textarea id="city" name="city" required></textarea>
+                </div>
+                <div class="input-box">
+                    <label for="state">State:</label>
+                    <textarea id="state" name="state" required></textarea>
+                </div>
+                <div class="input-box">
+                    <label for="country">Country:</label>
+                    <textarea id="country" name="country" required></textarea>
                 </div>
                 <div class="button-box">
                     <button type="button" class="add-experience-button">Add Experience</button>

@@ -85,9 +85,9 @@ Job Title -
 Company Name - 
 City - 
 State - 
-State - 
 Country - 
 Job Description - 
+Business Stream - 
 
 Current Salary Details (Optional):
 

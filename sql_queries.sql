@@ -170,7 +170,24 @@ VALUES
 -- dummy for user_account table
 INSERT INTO `user_account`(`user_type_id`, `email`, `password`, `name`, `date_of_birth`, `gender`, `is_active`, `contact_number`, `sms_notification_active`, `email_notification_active`, `user_image`, `registration_date`) VALUES (1,'som@email.com','som@pass', 'Somnath Maity', '2024-09-28','M','Y','9234343434','Y','Y','','2024-09-28')
 
+-- dummy data insert for seeker_profile table
+INSERT INTO `seeker_profile`(`user_account_id`, `first_name`, `last_name`, `current_salary`, `is_anually_monthly`, `currency`) VALUES (5,'Somnath','Maity',500000,'A','INR')
 
+-- populating skill_set table
+INSERT INTO `skill_set`(`id`, `skill_set_name`) VALUES (0,'Java');
+INSERT INTO `skill_set`(`id`, `skill_set_name`) VALUES (1,'Python');
+INSERT INTO `skill_set`(`id`, `skill_set_name`) VALUES (2,'C++');
+INSERT INTO `skill_set`(`id`, `skill_set_name`) VALUES (3,'JavaScript');
+INSERT INTO `skill_set`(`id`, `skill_set_name`) VALUES (4,'Other');
+
+-- get skill_set_id from skill_set_name
+SELECT id FROM `skill_set` WHERE skill_set_name = "C++";
+
+-- inserting data to business_stream table
+INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('0','IT');
+INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('1','Logistics');
+INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('2','Bank');
+INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('3','E-commerce');
 
 
 

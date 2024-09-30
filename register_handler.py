@@ -4,7 +4,7 @@ from database import get_login_data, add_user;
 def validateRegister(register_as, name, gender, dob, email, contact_number, password, profile_picture, sms_notification, email_notification):
     if (register_as == 'recruiter'):
         user_type_id = 1
-    elif (register_as == 'Job Seeker'):
+    elif (register_as == 'job-seeker'):
         user_type_id = 2
 
     profile_picture_data = None  # Initialize with default value
