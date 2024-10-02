@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Posting</title>
-    <link rel="stylesheet" type="text/css" href="css/job_posting.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/job_posting.css') }}">
 </head>
 <body>
     <div class="container">
@@ -73,17 +74,18 @@
                 <div class="input-box">
                     <label for="required-skills">Select multiple Skill Required:</label>
                     <select id="required-skills" multiple required>
-                        <!-- Populate skill options from database or API -->
+                        <option value="Java">Java</option>
+                        <option value="Python">Python</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <!-- Add more skills here -->
                     </select>
                 </div>
+                
                 <div class="input-box">
-                    <label for="required-skill-level">Choose multiple Skill Level:</label>
-                    <select id="required-skill-level" multiple required>
-                        <option value="Beginner">Beginner</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Advanced">Advanced</option>
-                        <option value="Expert">Expert</option>
-                    </select>
+                    <label for="required-skill-level">Choose Skill Level:</label>
+                    <div id="skill-level-container">
+                        <!-- Skill level fields will be dynamically added here -->
+                    </div>
                 </div>
                 <div class="input-box">
                     <label for="experience-required">Experience Required (in Years):</label>

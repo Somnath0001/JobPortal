@@ -2,12 +2,14 @@ from flask import Flask, render_template, request;
 from register_handler import validateRegister;
 from login_handler import validateUser;
 from user_session import get_id, update_id;
-from database import get_login_data;
+from database import get_login_data, get_user_type_id;
 from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
-from experience_details_handler import handle_experience_details
-from database import get_user_type_id
+from experience_details_handler import handle_experience_details;
+from company_profile_handler import handle_company_profile;
+from user_session import get_id;
+from job_card_handler import generate_job_card_html;
 
 app = Flask(__name__)
 
@@ -82,6 +84,16 @@ def experience_details():
 def company_profile():
     return render_template('company.html')
 
+# render job_posting.html page
+@app.route("/job_posting")
+def job_posting():
+    return render_template('job_posting.html')
+
+# render job_card.html page
+@app.route("/job_card")
+def job_card():
+    return generate_job_card_html()
+
 # handle registration when user clicks submit button
 @app.route("/register_handler", methods=['POST'])
 def register_handler():
@@ -148,6 +160,7 @@ def skills_handler():
 # handle experience_details when user clicks submit button
 @app.route("/experience_details_handler", methods=['POST'])
 def experience_details_handler():
+    # get data from experience_details.html
     company_name = request.form.get('company-name')
     currently_working = request.form.get('currently-working')
     job_title = request.form.get('job-title')
@@ -163,3 +176,31 @@ def experience_details_handler():
     handle_experience_details(company_name, currently_working, job_title, start_date, end_date, description, city, state, country, business_stream_id)
 
     return "Experience added."
+
+# handle company (create company profile) when user clicks submit button
+@app.route("/company_profile_handler", methods=['POSt'])
+def company_profile_handler():
+    # get data from company.html
+    company_name = request.form.get('company-name')
+    profile_description = request.form.get('profile-description')
+    business_stream_id = request.form.get('business-stream')
+    establishment_date = request.form.get('establishment-date')
+    website_url = request.form.get('website-url')
+    company_image = request.files.get('company-image')
+
+    print(company_name, profile_description, business_stream_id, establishment_date, website_url, company_image.filename)
+    # print all the data then do whatever next
+    handle_company_profile(company_name, profile_description, business_stream_id, establishment_date, website_url, company_image)
+
+    # Now based on user_type, let's render corresponding user dashboard page
+    id = get_id()
+    user_type_id = get_user_type_id(id)
+    print(f"user_type_id: {user_type_id}")
+    if (user_type_id == 1):
+        return render_template('job_seeker_dashboard.html')
+    elif (user_type_id == 2):
+        return render_template('recruiter_dashboard.html')
+
+
+
+

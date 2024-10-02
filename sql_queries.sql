@@ -68,14 +68,15 @@ ALTER TABLE `user_account` CHANGE `contact_number` `contact_number` VARCHAR(10) 
 
 -- adding AUTO_INCREMENT in tables
 -- ALTER TABLE <table name> AUTO_INCREMENT = 1;
-ALTER TABLE user_type AUTO_INCREMENT = 1;
+ALTER TABLE user_type CHANGE id id INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE user_account CHANGE id id INT NOT NULL AUTO_INCREMENT;
-ALTER TABLE business_stream AUTO_INCREMENT = 1;
-ALTER TABLE company AUTO_INCREMENT = 1;
+ALTER TABLE business_stream CHANGE id id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE company CHANGE id id INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE skill_set AUTO_INCREMENT = 1;
-ALTER TABLE job_type AUTO_INCREMENT = 1;
-ALTER TABLE job_location AUTO_INCREMENT = 1;
-ALTER TABLE job_post AUTO_INCREMENT = 1;
+ALTER TABLE job_type CHANGE id id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE job_location CHANGE id id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE job_post CHANGE id id INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE company_image CHANGE id id INT NOT NULL AUTO_INCREMENT;
 
 -- check table structure
 DESCRIBE user_account;
@@ -189,5 +190,91 @@ INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('1','Logisti
 INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('2','Bank');
 INSERT INTO `business_stream`(`id`, `business_stream_name`) VALUES ('3','E-commerce');
 
+-- dummy values for job_location
+INSERT INTO job_portal.job_location (id, street_address, city, state, country, zip)
+VALUES
+(1, '123 Main St', 'New York City', 'New York', 'USA', '10001'),
+(2, '456 Elm St', 'Los Angeles', 'California', 'USA', '90001'),
+(3, '789 Oak St', 'Chicago', 'Illinois', 'USA', '60601'),
+(4, '321 Maple St', 'Houston', 'Texas', 'USA', '77001'),
+(5, '901 Broadway', 'Seattle', 'Washington', 'USA', '98101'),
+(6, '345 Bloor St', 'Toronto', 'Ontario', 'Canada', 'M5S 1S2'),
+(7, '678 Collins St', 'Melbourne', 'Victoria', 'Australia', '3000'),
+(8, '234 Regent St', 'London', 'England', 'UK', 'W1B 3EG'),
+(9, '567 Champs-Élysées', 'Paris', 'Île-de-France', 'France', '75008'),
+(10, '890 Apollolaan', 'Amsterdam', 'North Holland', 'Netherlands', '1017 BA');
+
+-- insert values to job_type
+INSERT INTO `job_type`(`job_type`) VALUES ('Permanent');
+INSERT INTO `job_type`(`job_type`) VALUES ('Temporary');
+INSERT INTO `job_type`(`job_type`) VALUES ('Work From Home');
+INSERT INTO `job_type`(`job_type`) VALUES ('In Office');
+INSERT INTO `job_type`(`job_type`) VALUES ('Permanent Work From Home');
+INSERT INTO `job_type`(`job_type`) VALUES ('Temporary In Office');
+
+-- Inserting dummy values into job_post table
+
+INSERT INTO job_portal.job_post 
+(posted_by_id, job_type_id, company_id, is_company_name_hidden, 
+created_date, job_description, job_location_id, is_active, salary_offered, experience_required)
+VALUES
+(11, 1, 1, 'N', '2022-01-01', 'Software Engineer', 1, 'Y', 80000, 2),
+(12, 2, 1, 'Y', '2022-02-01', 'Data Scientist', 3, 'Y', 120000, 5),
+(13, 3, 3, 'N', '2022-03-01', 'Marketing Manager', 5, 'Y', 90000, 3),
+(11, 4, 4, 'Y', '2022-04-01', 'Product Manager', 2, 'Y', 100000, 4),
+(12, 1, 1, 'N', '2022-05-01', 'Full Stack Developer', 4, 'Y', 70000, 2),
+(13, 2, 3, 'Y', '2022-06-01', 'DevOps Engineer', 6, 'Y', 110000, 5),
+(11, 3, 3, 'N', '2022-07-01', 'UX Designer', 7, 'Y', 80000, 3),
+(12, 4, 4, 'Y', '2022-08-01', 'Business Analyst', 8, 'Y', 90000, 4),
+(13, 1, 1, 'N', '2022-09-01', 'Frontend Developer', 9, 'Y', 60000, 2),
+(11, 2, 4, 'Y', '2022-10-01', 'Backend Developer', 10, 'Y', 100000, 5);
+
+-- dummy values for job_post_skill_set table
+INSERT INTO job_post_skill_set (skill_set_id, job_post_id, skill_level)
+VALUES
+(0, 11, 2),
+(1, 11, 3),
+(2, 11, 1),
+(3, 11, 4),
+(4, 11, 2),
+(0, 12, 1),
+(1, 12, 4),
+(2, 12, 3),
+(3, 12, 2),
+(4, 12, 1),
+(0, 13, 4),
+(1, 13, 2),
+(2, 13, 1),
+(3, 13, 3),
+(4, 13, 4),
+(0, 14, 3),
+(1, 14, 1),
+(2, 14, 4),
+(3, 14, 2),
+(4, 15, 1),
+(0, 16, 2);
+
+-- get job_card details from job_post table and others
+version 1
+
+select * from job_post 
+INNER JOIN company on job_post.company_id = company.id
+INNER JOIN company_image on job_post.company_id = company_image.company_id
+INNER JOIN job_location on job_post.job_location_id = job_location.id
+INNER JOIN job_post_skill_set on job_post.id = job_post_skill_set.job_post_id;
+
+version 2
+
+select * from job_post 
+INNER JOIN company on job_post.company_id = company.id
+INNER JOIN company_image on job_post.company_id = company_image.company_id
+INNER JOIN job_location on job_post.job_location_id = job_location.id
+
+version 3
+
+select job_description, company_name, company_image, experience_required, salary_offered, street_address, city, state, country, zip, created_date from job_post 
+INNER JOIN company on job_post.company_id = company.id
+INNER JOIN company_image on job_post.company_id = company_image.company_id
+INNER JOIN job_location on job_post.job_location_id = job_location.id
 
 

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Card</title>
-    <link rel="stylesheet" type="text/css" href="css/job_card.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/job_card.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
     <div class="job-card">
@@ -19,16 +20,26 @@
         </div>
         <div class="section">
             <div class="job-details">
-                <p class="experience-required">Experience Required: <span>5 Years</span></p>
-                <p class="salary">Salary: <span>$50,000 - $70,000</span></p>
-                <p class="job-location">Job Location: <span>New York</span></p>
+                <p class="experience-required">
+                    <i class="fa-solid fa-clock"></i><span>  5 Years</span>
+                </p>
+                <p class="salary">
+                    <i class="fa-solid fa-dollar-sign"></i><span>  $50,000 - $70,000</span>
+                </p>
+                <p class="job-location">
+                    <i class="fa-solid fa-map-location-dot"></i><span>  New York</span>
+                </p>
             </div>
         </div>
         <div class="section">
-            <p class="qualification-skills">Qualification/Skills Required: <span>Bachelor's Degree, Java, Python, JavaScript</span></p>
+            <p class="qualification-skills">
+                <i class="fa-solid fa-graduation-cap"></i><span>  Bachelor's Degree, Java, Python, JavaScript</span>
+            </p>
         </div>
         <div class="section">
-            <p class="publish-date">Publish Date: <span>2024-09-26</span></p>
+            <p class="publish-date">
+                <i class="fa-solid fa-calendar-days"></i><span>  2024-09-26</span>
+            </p>
         </div>
     </div>
 </body>

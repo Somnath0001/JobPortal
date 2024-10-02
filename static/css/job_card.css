@@ -1,0 +1,67 @@
+/* job_card.css */
+
+.job-card {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 5px;
+}
+
+.job-role {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+
+.company-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.job-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.experience-required {
+    flex: 1;
+    text-align: left;
+}
+
+.salary {
+    flex: 1;
+    text-align: center;
+}
+
+.job-location {
+    flex: 2;
+    text-align: right;
+}
+
+.qualification-skills, 
+.publish-date {
+    text-align: left;
+    font-size: 14px;
+}

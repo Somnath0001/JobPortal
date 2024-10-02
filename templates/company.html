@@ -11,37 +11,38 @@
     <div class="container">
         <div class="card">
             <h2>Company Profile</h2>
-            <form>
+            <form action="/company_profile_handler" method="POST" enctype="multipart/form-data">
                 <div class="input-box">
                     <label for="company-name">Company Name:</label>
-                    <input type="text" id="company-name" required>
+                    <input type="text" id="company-name" name="company-name" required>
                 </div>
                 <div class="input-box">
                     <label for="profile-description">Profile Description:</label>
-                    <textarea id="profile-description" rows="5" required></textarea>
+                    <textarea id="profile-description" name="profile-description" rows="5" required></textarea>
                 </div>
                 <div class="input-box">
                     <label for="business-stream">Select Business Stream:</label>
-                    <select id="business-stream" required>
+                    <select id="business-stream" name="business-stream" required>
                         <option value="">Select Stream</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Finance">Finance</option>
-                        <option value="Healthcare">Healthcare</option>
+                        <option value="1">IT</option>
+                        <option value="2">Logistics</option>
+                        <option value="3">Bank</option>
+                        <option value="4">E-commerce</option>
                     </select>
                 </div>
                 <div class="input-box">
                     <label for="establishment-date">Establishment Date:</label>
-                    <input type="date" id="establishment-date" required>
+                    <input type="date" id="establishment-date" name="establishment-date" required>
                 </div>
                 <div class="input-box">
                     <label for="website-url">Website URL:</label>
-                    <input type="url" id="website-url" required>
+                    <input type="url" id="website-url" name="website-url" required>
                 </div>
                 <div class="input-box">
                     <label for="company-image">Upload Company Image:</label>
-                    <input type="file" id="company-image" accept="image/*">
+                    <input type="file" id="company-image" name="company-image" accept="image/*">
                 </div>
-                <button type="submit" class="submit-button">Save Changes</button>
+                <button type="submit" class="submit-button">Submit</button>
             </form>
         </div>
     </div>

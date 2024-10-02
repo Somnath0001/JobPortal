@@ -1,0 +1,112 @@
+/* style.css */
+
+/* Global Styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+select {
+    appearance: none;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.input-box div {
+    display: flex;
+    align-items: center;
+}
+
+.radio-button {
+    margin-right: 10px;
+}
+
+/* Button Styles */
+
+.button-box {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #3e8e41;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-box {
+        margin-bottom: 15px;
+    }
+    label {
+        margin-bottom: 5px;
+    }
+}

@@ -80,6 +80,85 @@ def get_user_type_id(user_account_id):
     db.close()
     return result
 
+def add_company_profile(company_name, profile_description, business_stream_id, establishment_date, website_url):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `company`(`company_name`, `profile_description`, `business_stream_id`, `establishment_date`, `company_website_url`) VALUES (%s,%s,%s,%s,%s)"
+    cursor.execute(query, (company_name, profile_description, business_stream_id, establishment_date, website_url))
+    db.commit()
+    db.close()
+
+def get_company_id(company_name):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT id FROM company WHERE company_name = %s"
+    cursor.execute(query, (company_name, ))
+    result = cursor.fetchone()[0]
+    db.close()
+    return result
+
+def add_company_image(company_id, company_image_data):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `company_image`(`company_id`, `company_image`) VALUES (%s,%s)"
+    cursor.execute(query, (company_id, company_image_data))
+    db.commit()
+    db.close()
+
+def get_all_job_post():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `job_post` LIMIT 10;"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+def get_company(company_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `company` WHERE id = %s;"
+    cursor.execute(query, (company_id, ))
+    result = cursor.fetchone()
+    db.close()
+    return result
+
+def get_one_company_image(company_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `company_image` WHERE company_id = %s LIMIT 1;"
+    cursor.execute(query, (company_id, ))
+    result = cursor.fetchone()
+    db.close()
+    return result
+
+def get_seeker_skill_set(skill_set_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `seeker_skill_set` WHERE skill_set_id = %s;"
+    cursor.execute(query, (skill_set_id, ))
+    result = cursor.fetchone()
+    db.close()
+    return result
+
+def get_job_card_data():
+    db = connect_db()
+    cursor = db.cursor()
+    query = """select job_description, company_name, company_image, experience_required, salary_offered, street_address, city, state, country, zip, created_date from job_post 
+                INNER JOIN company on job_post.company_id = company.id
+                INNER JOIN company_image on job_post.company_id = company_image.company_id
+                INNER JOIN job_location on job_post.job_location_id = job_location.id"""
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+
+
+
+
+
+
 
 def get_cars():
     db = connect_db()
