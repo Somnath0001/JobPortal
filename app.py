@@ -2,7 +2,7 @@ from flask import Flask, render_template, request;
 from register_handler import validateRegister;
 from login_handler import validateUser;
 from user_session import get_id, update_id;
-from database import get_login_data, get_user_type_id;
+from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity;
 from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
@@ -10,6 +10,7 @@ from experience_details_handler import handle_experience_details;
 from company_profile_handler import handle_company_profile;
 from user_session import get_id;
 from job_card_handler import generate_job_card_html;
+from datetime import date;
 
 app = Flask(__name__)
 
@@ -178,7 +179,7 @@ def experience_details_handler():
     return "Experience added."
 
 # handle company (create company profile) when user clicks submit button
-@app.route("/company_profile_handler", methods=['POSt'])
+@app.route("/company_profile_handler", methods=['POST'])
 def company_profile_handler():
     # get data from company.html
     company_name = request.form.get('company-name')
@@ -200,6 +201,72 @@ def company_profile_handler():
         return render_template('job_seeker_dashboard.html')
     elif (user_type_id == 2):
         return render_template('recruiter_dashboard.html')
+
+# handle job_posint when user clicks submit button
+@app.route("/job_posting_handler", methods=['POST'])
+def job_posting_handler():
+    print("job_postng_handler working")
+    # get data from job_posting.html
+    job_type_id = request.form.get('job-type')
+    company_id = request.form.get('company-name')
+    is_company_name_hidden = request.form.get('hide-company-name')
+    job_description = request.form.get('job-description')
+    existing_or_new_location = request.form.get('existing-or-new-location')
+    if (existing_or_new_location == 'existing'):
+        job_location_id = request.form.get('job-location')
+        print('existing_job_location: ', job_location_id)
+
+    elif (existing_or_new_location == 'new'):
+        street_address = request.form.get('street-address')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        country = request.form.get('country')
+        zip_code = request.form.get('zip-code')
+        print('new_job_location: ', street_address, city, state, country, zip_code)
+
+        # inserting data to job_location table
+        add_job_location(street_address, city, state, country, zip_code)
+        print('added to job_location.')
+        
+        # get the job_location_id from the table
+        job_location_id = get_job_location_id(street_address, city, state, country, zip_code)
+
+        print('job_location_id: ', job_location_id)
+    
+    experience_required = request.form.get('experience-required')
+    salary_offered = request.form.get('salary-offered')
+    apply_date = request.form.get('apply-date')
+
+    print('other_job_posting_details: ', job_type_id, company_id, job_description, is_company_name_hidden, existing_or_new_location, experience_required, salary_offered, apply_date)
+
+    posted_by_id = get_id()
+    is_active = 'Y'
+    created_date = date.today()
+
+    # inserting data to job_post table
+    add_job_post(posted_by_id, job_type_id, company_id, is_company_name_hidden, created_date, job_description, job_location_id, is_active, salary_offered, experience_required)
+    print('added to job_post.')
+
+    # inserting data to job_post_skill_set table
+    # getting the job_post_id from the table
+    job_post_id = get_job_post_id(posted_by_id, job_type_id, company_id, is_company_name_hidden, created_date, job_description, job_location_id, is_active, salary_offered, experience_required)
+    print('job_post_id: ', job_post_id)
+
+    no_of_skill_set_required = int(request.form.get('no-of-skill-set-required'))
+    print('no_of_skill_set_required: ', no_of_skill_set_required)
+
+    for i in range(no_of_skill_set_required):
+        skill_set_id = request.form.get(f"required-skills-{i}")
+        skill_level = request.form.get(f"required-skill-level-{i}")
+        print('required_skill_set: ', skill_set_id, skill_level)
+        add_job_post_skill_set(skill_set_id, job_post_id, skill_level)
+        print('added to job_post_skill_set.')
+
+    # inserting data to job_post_activity table
+    add_job_post_activity(posted_by_id, job_post_id, apply_date)
+    print('added to job_post_activity.')
+
+    return '<h2 style="color:Green;">Job details added</h2>'
 
 
 

@@ -10,9 +10,9 @@
             write backend DB codes for company table and company_image table
             (2024-09-30 14:56:18) - start
             (2024-09-30 19:10:52) - done 
-(2024-10-01 09:02:47) 
-3. Job Card Details
-(2024-10-01 18:31:54)
+            (2024-10-01 09:02:47) 
+3. [done] Job Card Details
+            (2024-10-01 18:31:54)
             create dummy values for job_post
             enable job_posting html functionality
             (2024-10-02 23:05:06) - done partially
@@ -20,6 +20,10 @@
             Need a query to fetch the above data from database 
 
 4. Make every html page to get generated from python script 
- 
+
+5. update code for job_posting.html and write code for the backend.
+            (2024-10-03 09:50:05)
+            (2024-10-07 19:52:40) - done 
+
 
             

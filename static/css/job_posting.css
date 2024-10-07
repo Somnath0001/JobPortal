@@ -110,3 +110,38 @@ select {
         margin-bottom: 5px;
     }
 }
+.skill-box {
+    margin-bottom: 20px;
+}
+
+.skill-fields {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-fields select {
+    width: 49%;
+    margin-right: 10px;
+}
+
+/* Responsive Design adjustment */
+
+@media (max-width: 480px) {
+    .skill-fields {
+        flex-direction: column;
+    }
+    .skill-fields select {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.new-address {
+    display: none; /* Hide by default */
+}
+
+.skill-box-container {
+    margin-bottom: 20px;
+}

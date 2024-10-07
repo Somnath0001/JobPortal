@@ -11,97 +11,110 @@
     <div class="container">
         <div class="card">
             <h2>Job Posting</h2>
-            <form>
+            <form action="/job_posting_handler" method="POST">
                 <div class="input-box">
                     <label for="job-type">Select Job Type:</label>
-                    <select id="job-type" required>
+                    <select id="job-type" name="job-type" required>
                         <option value="">Select Job Type</option>
-                        <option value="Full-time">Full-time</option>
-                        <option value="Part-time">Part-time</option>
-                        <option value="Internship">Internship</option>
-                        <option value="Contract">Contract</option>
+                        <option value="1">Full-time</option>
+                        <option value="2">Part-time</option>
+                        <option value="3">Internship</option>
+                        <option value="4">Contract</option>
                     </select>
                 </div>
                 <div class="input-box">
                     <label for="company-name">Select Company:</label>
-                    <select id="company-name" required>
+                    <select id="company-name" name="company-name" required>
                         <option value="">Select Company</option>
+                        <option value="3">Infosys</option>
+                        <option value="4">Wipro</option>
                         <!-- Populate company options from database or API -->
                     </select>
                 </div>
                 <div class="input-box">
                     <label for="hide-company-name">Hide Company Name?</label>
                     <div>
-                        <input type="radio" id="hide-company-name-yes" name="hide-company-name" value="Yes">
+                        <input type="radio" id="hide-company-name-yes" name="hide-company-name" value="Y">
                         <label for="hide-company-name-yes">Yes</label>
-                        <input type="radio" id="hide-company-name-no" name="hide-company-name" value="No" checked>
+                        <input type="radio" id="hide-company-name-no" name="hide-company-name" value="N" checked>
                         <label for="hide-company-name-no">No</label>
                     </div>
                 </div>
                 <div class="input-box">
                     <label for="job-description">Job Description:</label>
-                    <textarea id="job-description" required></textarea>
+                    <textarea id="job-description" name="job-description" required></textarea>
                 </div>
                 <div class="input-box">
-                    <label for="job-location">Select Job Location:</label>
-                    <select id="job-location" required>
-                        <option value="">Select Job Location</option>
-                        <option value="Office">Office</option>
-                        <option value="Remote">Remote</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="input-box">
-                    <label for="street-address">Street Address:</label>
-                    <input type="text" id="street-address" required>
-                </div>
-                <div class="input-box">
-                    <label for="city">City:</label>
-                    <input type="text" id="city" required>
-                </div>
-                <div class="input-box">
-                    <label for="state">State:</label>
-                    <input type="text" id="state" required>
-                </div>
-                <div class="input-box">
-                    <label for="country">Country:</label>
-                    <input type="text" id="country" required>
-                </div>
-                <div class="input-box">
-                    <label for="zip-code">Zip Code:</label>
-                    <input type="text" id="zip-code" required>
-                </div>
-                <div class="input-box">
-                    <label for="required-skills">Select multiple Skill Required:</label>
-                    <select id="required-skills" multiple required>
-                        <option value="Java">Java</option>
-                        <option value="Python">Python</option>
-                        <option value="JavaScript">JavaScript</option>
-                        <!-- Add more skills here -->
-                    </select>
-                </div>
-                
-                <div class="input-box">
-                    <label for="required-skill-level">Choose Skill Level:</label>
-                    <div id="skill-level-container">
-                        <!-- Skill level fields will be dynamically added here -->
+                    <label for="existing-or-new-location">Select location or add new location</label>
+                    <div>
+                        <input type="radio" id="existing-location" name="existing-or-new-location" value="existing" checked>
+                        <label for="existing-location">Existing location</label>
+                        <input type="radio" id="new-location" name="existing-or-new-location" value="new">
+                        <label for="new-location">New location</label>
                     </div>
                 </div>
                 <div class="input-box">
+                    <label for="job-location">Select Job Location:</label>
+                    <select id="job-location" name="job-location">
+                        <option value="">Select Job Location</option>
+                        <option value="1">123 Main St, New York City, New York, USA, 10001</option>
+                        <option value="2">456 Elm St, Los Angeles, California, USA, 90001</option>
+                    </select>
+                </div>
+                <div class="input-box new-address" style="display: none;">
+                    <label for="street-address">Street Address:</label>
+                    <input type="text" id="street-address" name="street-address">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country">
+                    <label for="zip-code">Zip Code:</label>
+                    <input type="text" id="zip-code" name="zip-code">
+                </div>
+                <div class="input-box">
+                    <label for="no-of-skill-set-required">How many skill set required?</label>
+                    <select id="no-of-skill-set-required" name="no-of-skill-set-required" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <!--
+                <div class="input-box skill-box">
+                    <label>Skills Required:</label>
+                    <div class="skill-fields">
+                        <select id="required-skills" required>
+                            <option value="0">Java</option>
+                            <option value="1">Python</option>
+                            <option value="3">JavaScript</option>
+                        </select>
+                        <select id="required-skill-level" required>
+                            <option value="1">Beginner</option>
+                            <option value="2">Intermediate</option>
+                            <option value="3">Advanced</option>
+                            <option value="4">Expert</option>
+                        </select>
+                    </div>
+                </div>
+                -->
+                <div class="skill-box-container"></div>
+                <div class="input-box">
                     <label for="experience-required">Experience Required (in Years):</label>
-                    <input type="number" id="experience-required" required>
+                    <input type="number" id="experience-required" name="experience-required" required>
                 </div>
                 <div class="input-box">
                     <label for="salary-offered">Salary Offered:</label>
-                    <input type="number" id="salary-offered" required>
+                    <input type="number" id="salary-offered" name="salary-offered" required>
                 </div>
                 <div class="input-box">
                     <label for="apply-date">Apply Date:</label>
-                    <input type="date" id="apply-date" required>
+                    <input type="date" id="apply-date" name="apply-date" required>
                 </div>
-                <div class="button-box">
-                    <button type="button" class="save-button">Save</button>
-                </div>
+                <button type="submit" class="save-button">Save</button>
             </form>
         </div>
     </div>

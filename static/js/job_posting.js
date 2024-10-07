@@ -1,45 +1,67 @@
-// Get the skills select element
-const skillsSelect = document.getElementById('required-skills');
+document.addEventListener('DOMContentLoaded', function() {
+    // Location toggle logic
+    const existingLocationRadio = document.getElementById('existing-location');
+    const newLocationRadio = document.getElementById('new-location');
+    const jobLocationSelect = document.getElementById('job-location');
+    const newAddressDiv = document.querySelector('.new-address');
 
-// Get the skill level container
-const skillLevelContainer = document.getElementById('skill-level-container');
-
-// Add event listener to skills select element
-skillsSelect.addEventListener('change', updateSkillLevels);
-
-// Function to update skill levels
-function updateSkillLevels() {
-    // Clear existing skill level fields
-    skillLevelContainer.innerHTML = '';
-
-    // Get selected skills
-    const selectedSkills = skillsSelect.selectedOptions;
-
-    // Loop through each selected skill
-    selectedSkills.forEach((skill) => {
-        // Create a skill level select element
-        const skillLevelSelect = document.createElement('select');
-        skillLevelSelect.required = true;
-
-        // Add skill level options
-        const skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Expert'];
-        skillLevels.forEach((level) => {
-            const option = document.createElement('option');
-            option.value = level;
-            option.text = level;
-            skillLevelSelect.appendChild(option);
-        });
-
-        // Create a label for the skill level select element
-        const skillLabel = document.createElement('label');
-        skillLabel.textContent = `${skill.value} Skill Level:`;
-
-        // Append skill label and select element to container
-        skillLevelContainer.appendChild(skillLabel);
-        skillLevelContainer.appendChild(skillLevelSelect);
-        skillLevelContainer.appendChild(document.createElement('br'));
+    existingLocationRadio.addEventListener('change', function() {
+        if (this.checked) {
+            jobLocationSelect.style.display = 'block';
+            newAddressDiv.style.display = 'none';
+        }
     });
-}
 
-// Initial update
-updateSkillLevels();
+    newLocationRadio.addEventListener('change', function() {
+        if (this.checked) {
+            jobLocationSelect.style.display = 'none';
+            newAddressDiv.style.display = 'block';
+        }
+    });
+
+    // Initialize default state
+    if (existingLocationRadio.checked) {
+        jobLocationSelect.style.display = 'block';
+        newAddressDiv.style.display = 'none';
+    }
+
+    // Dynamic skill box logic
+    const skillSetCountSelect = document.getElementById('no-of-skill-set-required');
+    const skillBoxContainer = document.querySelector('.skill-box-container');
+
+    // Initialize skill box container
+    skillBoxContainer.innerHTML = '';
+
+    skillSetCountSelect.addEventListener('change', function() {
+        const skillSetCount = parseInt(this.value);
+        skillBoxContainer.innerHTML = '';
+
+        for (let i = 0; i < skillSetCount; i++) {
+            const skillBox = document.createElement('div');
+            skillBox.className = 'input-box skill-box';
+
+            skillBox.innerHTML = `
+                <label for="required-skills-${i}">Skills Required ${i + 1}:</label>
+                <div class="skill-fields">
+                    <select id="required-skills-${i}" name="required-skills-${i}" required>
+                        <option value="0">Java</option>
+                        <option value="1">Python</option>
+                        <option value="3">JavaScript</option>
+                    </select>
+                    <label for="required-skill-level-${i}">Skill Level:</label>
+                    <select id="required-skill-level-${i}" name="required-skill-level-${i}" required>
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Advanced</option>
+                        <option value="4">Expert</option>
+                    </select>
+                </div>
+            `;
+
+            skillBoxContainer.appendChild(skillBox);
+        }
+    });
+
+    // Initialize default skill box
+    skillSetCountSelect.dispatchEvent(new Event('change'));
+});

@@ -153,7 +153,56 @@ def get_job_card_data():
     db.close()
     return result
 
+def add_job_post(posted_by_id, job_type_id, company_id, is_company_name_hidden, created_date, job_description, job_location_id, is_active, salary_offered, experience_required):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `job_post`(`posted_by_id`, `job_type_id`, `company_id`, `is_company_name_hidden`, `created_date`, `job_description`, `job_location_id`, `is_active`, `salary_offered`, `experience_required`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    cursor.execute(query, (posted_by_id, job_type_id, company_id, is_company_name_hidden, created_date, job_description, job_location_id, is_active, salary_offered, experience_required))
+    db.commit()
+    db.close()
 
+def add_job_location(street_address, city, state, country, zip_code):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `job_location`(`street_address`, `city`, `state`, `country`, `zip`) VALUES (%s,%s,%s,%s,%s)"
+    cursor.execute(query, (street_address, city, state, country, zip_code))
+    db.commit()
+    db.close()
+
+def get_job_location_id(street_address, city, state, country, zip_code):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT `id` from job_location WHERE street_address=%s AND city=%s AND state=%s AND country=%s AND zip=%s;"
+    cursor.execute(query, (street_address, city, state, country, zip_code))
+    result = cursor.fetchone()[0]
+    db.close()
+    return result
+
+def add_job_post_skill_set(skill_set_id, job_post_id, skill_level):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `job_post_skill_set`(`skill_set_id`, `job_post_id`, `skill_level`) VALUES (%s,%s,%s);"
+    cursor.execute(query, (skill_set_id, job_post_id, skill_level))
+    db.commit()
+    db.close()
+
+
+def add_job_post_activity(user_account_id, job_post_id, apply_date):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `job_post_activity`(`user_account_id`, `job_post_id`, `apply_date`) VALUES (%s,%s,%s);"
+    cursor.execute(query, (user_account_id, job_post_id, apply_date))
+    db.commit()
+    db.close()
+
+def get_job_post_id(posted_by_id, job_type_id, company_id, is_company_name_hidden, created_date, job_description, job_location_id, is_active, salary_offered, experience_required):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"SELECT `id` FROM job_post WHERE posted_by_id={posted_by_id} AND job_type_id={job_type_id} AND company_id={company_id} AND is_company_name_hidden='{is_company_name_hidden}' AND created_date='{created_date}' AND job_description='{job_description}' AND job_location_id={job_location_id} AND is_active='{is_active}' AND salary_offered={salary_offered} AND experience_required={experience_required}"
+    cursor.execute(query)
+    result = cursor.fetchone()[0]
+    db.close()
+    return result
 
 
 
