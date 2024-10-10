@@ -204,6 +204,51 @@ def get_job_post_id(posted_by_id, job_type_id, company_id, is_company_name_hidde
     db.close()
     return result
 
+def get_all_job_type():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `job_type` WHERE 1"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+def get_all_company():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `company` WHERE 1"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+def get_all_location():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `job_location` WHERE 1"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+def get_all_skill_set():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `skill_set` WHERE 1"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+def get_all_job_type():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `job_type` WHERE 1"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
 
 
 

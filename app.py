@@ -10,6 +10,7 @@ from experience_details_handler import handle_experience_details;
 from company_profile_handler import handle_company_profile;
 from user_session import get_id;
 from job_card_handler import generate_job_card_html;
+from job_posting_handler import generate_job_posting_html_code;
 from datetime import date;
 
 app = Flask(__name__)
@@ -88,7 +89,8 @@ def company_profile():
 # render job_posting.html page
 @app.route("/job_posting")
 def job_posting():
-    return render_template('job_posting.html')
+    # return render_template('job_posting.html')
+    return generate_job_posting_html_code()
 
 # render job_card.html page
 @app.route("/job_card")

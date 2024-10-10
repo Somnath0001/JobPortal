@@ -25,5 +25,13 @@
             (2024-10-03 09:50:05)
             (2024-10-07 19:52:40) - done 
 
+6. Update job_posting.html      (2024-10-09 07:46:23)
+            job-type will be filled from backend 
+            company-name   "
+            job-location   "
+            skill-fields   "
+            (2024-10-09 08:55:36) - done 
+
+7.    (2024-10-10 09:43:04)
 
             
