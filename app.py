@@ -180,6 +180,18 @@ def experience_details_handler():
 
     return "Experience added."
 
+# return to dashboard based on user_type
+@app.route("/return_to_dashboard")
+def return_to_dashboard():
+    # Now based on user_type, let's render corresponding user dashboard page
+    id = get_id()
+    user_type_id = get_user_type_id(id)
+    print(f"user_type_id: {user_type_id}")
+    if (user_type_id == 1):
+        return render_template('job_seeker_dashboard.html')
+    elif (user_type_id == 2):
+        return render_template('recruiter_dashboard.html')
+
 # handle company (create company profile) when user clicks submit button
 @app.route("/company_profile_handler", methods=['POST'])
 def company_profile_handler():
@@ -195,14 +207,7 @@ def company_profile_handler():
     # print all the data then do whatever next
     handle_company_profile(company_name, profile_description, business_stream_id, establishment_date, website_url, company_image)
 
-    # Now based on user_type, let's render corresponding user dashboard page
-    id = get_id()
-    user_type_id = get_user_type_id(id)
-    print(f"user_type_id: {user_type_id}")
-    if (user_type_id == 1):
-        return render_template('job_seeker_dashboard.html')
-    elif (user_type_id == 2):
-        return render_template('recruiter_dashboard.html')
+    return return_to_dashboard()
 
 # handle job_posint when user clicks submit button
 @app.route("/job_posting_handler", methods=['POST'])
@@ -268,7 +273,8 @@ def job_posting_handler():
     add_job_post_activity(posted_by_id, job_post_id, apply_date)
     print('added to job_post_activity.')
 
-    return '<h2 style="color:Green;">Job details added</h2>'
+    return """<h2 style="color:Green;">Job details added</h2>
+                <a href=\"/return_to_dashboard\">Return to Dashboard</a>"""
 
 
 

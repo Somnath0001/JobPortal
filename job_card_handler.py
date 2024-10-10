@@ -13,7 +13,10 @@ html_top = """<!DOCTYPE html>
                 </head>
                 <body>"""
 
-html_bottom = """</body>
+html_bottom = """<a href="/return_to_dashboard">
+                        <button type="button" class="next-button">Return to Dashboard</button>
+                    </a>
+                </body>
                 </html>"""
 
 
