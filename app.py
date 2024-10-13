@@ -2,7 +2,7 @@ from flask import Flask, render_template, request;
 from register_handler import validateRegister;
 from login_handler import validateUser;
 from user_session import get_id, update_id;
-from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity;
+from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status;
 from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
@@ -11,6 +11,7 @@ from company_profile_handler import handle_company_profile;
 from user_session import get_id;
 from job_card_handler import generate_job_card_html;
 from job_posting_handler import generate_job_posting_html_code;
+from handle_check_application_status import generate_check_application_status_html;
 from datetime import date;
 
 app = Flask(__name__)
@@ -96,6 +97,11 @@ def job_posting():
 @app.route("/job_card")
 def job_card():
     return generate_job_card_html()
+
+# render check_application.html page
+@app.route("/check_application_status_handler")
+def check_application_status_handler():
+    return generate_check_application_status_html()
 
 # handle registration when user clicks submit button
 @app.route("/register_handler", methods=['POST'])
@@ -276,6 +282,16 @@ def job_posting_handler():
     return """<h2 style="color:Green;">Job details added</h2>
                 <a href=\"/return_to_dashboard\">Return to Dashboard</a>"""
 
+# Apply job when 'Apply' button is pressed in job_card
+@app.route("/apply", methods=["POST"])
+def apply():
+    user_account_id = get_id()
+    job_post_id = request.form.get("job_post_id")
+    print(job_post_id, user_account_id, 'pending')
+    add_job_application_status(job_post_id, user_account_id, status="pending")
 
+    return generate_job_card_html()
+
+# 
 
 

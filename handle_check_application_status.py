@@ -2,7 +2,7 @@ from database import applied_jobs;
 from user_session import get_id;
 
 def generate_check_application_status_html():
-    user_account_id = 5
+    user_account_id = get_id()
 
     html_head = """<!DOCTYPE html>
 <html lang="en">
@@ -31,12 +31,9 @@ def generate_check_application_status_html():
         <td>{data[1]}</td>
         <td>{data[3]}</td>
         <td>{data[4]}</td>
-</tr>
-"""
+</tr>"""
         complete_html_code += row_code
 
     complete_html_code += html_end
 
     return complete_html_code
-
-print(generate_check_application_status_html())

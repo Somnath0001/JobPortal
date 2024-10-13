@@ -21,17 +21,26 @@
 
 4. Make every html page to get generated from python script 
 
-5. update code for job_posting.html and write code for the backend.
+5. [done] update code for job_posting.html and write code for the backend.
             (2024-10-03 09:50:05)
             (2024-10-07 19:52:40) - done 
 
-6. Update job_posting.html      (2024-10-09 07:46:23)
+6. [done] Update job_posting.html      (2024-10-09 07:46:23)
             job-type will be filled from backend 
             company-name   "
             job-location   "
             skill-fields   "
             (2024-10-09 08:55:36) - done 
 
-7.    (2024-10-10 09:43:04)
+7. [done] Return to Dashboard   (2024-10-10 09:43:04)
+            (2024-10-10 10:54:12) - done 
+
+8. Add "Apply" functionality in "job_card"
+             (2024-10-13 12:00:57) - start
+
+9. Add "check application status" functionality 
+             (2024-10-13 13:49:48) - done
+
+             
 
             

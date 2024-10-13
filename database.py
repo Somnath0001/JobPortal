@@ -144,7 +144,7 @@ def get_seeker_skill_set(skill_set_id):
 def get_job_card_data():
     db = connect_db()
     cursor = db.cursor()
-    query = """select job_description, company_name, company_image, experience_required, salary_offered, street_address, city, state, country, zip, created_date from job_post 
+    query = """select job_description, company_name, company_image, experience_required, salary_offered, street_address, city, state, country, zip, created_date, job_post.id from job_post 
                 INNER JOIN company on job_post.company_id = company.id
                 INNER JOIN company_image on job_post.company_id = company_image.company_id
                 INNER JOIN job_location on job_post.job_location_id = job_location.id"""
@@ -248,6 +248,37 @@ def get_all_job_type():
     result = cursor.fetchall()
     db.close()
     return result
+
+def add_job_application_status(job_post_id, user_account_id, status):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"INSERT INTO `job_application_status`(`job_post_id`, `user_account_id`, `status`) VALUES (%s,%s,%s)"
+    cursor.execute(query, (job_post_id, user_account_id, status))
+    db.commit()
+    db.close()
+
+def is_job_applied(job_post_id, user_account_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"SELECT EXISTS (SELECT 1 FROM job_application_status WHERE job_post_id={job_post_id} AND user_account_id={user_account_id})"
+    cursor.execute(query)
+    result = cursor.fetchone()
+    db.close()
+    if (result[0] == 0):
+        return False 
+    else:
+        return True 
+    
+def applied_jobs(user_account_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"SELECT * FROM `job_application_status` WHERE user_account_id={user_account_id};"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+
 
 
 
