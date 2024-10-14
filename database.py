@@ -272,7 +272,7 @@ def is_job_applied(job_post_id, user_account_id):
 def applied_jobs(user_account_id):
     db = connect_db()
     cursor = db.cursor()
-    query = f"SELECT * FROM `job_application_status` WHERE user_account_id={user_account_id};"
+    query = f"SELECT job_post.job_description, job_post.is_company_name_hidden, company.company_name, status, application_date FROM `job_application_status` JOIN job_post ON job_application_status.job_post_id = job_post.id JOIN company ON job_post.company_id = company.id WHERE user_account_id={user_account_id}"
     cursor.execute(query)
     result = cursor.fetchall()
     db.close()

@@ -14,7 +14,8 @@ def generate_check_application_status_html():
 <body>
     <table>
         <tr>
-            <th>Job Post Id</th>
+            <th>Job Description</th>
+            <th>Company</th>
             <th>Status</th>
             <th>Application Date</th>
         </tr>"""
@@ -28,7 +29,8 @@ def generate_check_application_status_html():
     result = applied_jobs(user_account_id)
     for data in result:
         row_code = f"""<tr>
-        <td>{data[1]}</td>
+        <td>{data[0]}</td>
+        <td>{data[2]}</td>
         <td>{data[3]}</td>
         <td>{data[4]}</td>
 </tr>"""

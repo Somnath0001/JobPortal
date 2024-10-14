@@ -35,10 +35,10 @@
 7. [done] Return to Dashboard   (2024-10-10 09:43:04)
             (2024-10-10 10:54:12) - done 
 
-8. Add "Apply" functionality in "job_card"
+8. [done] Add "Apply" functionality in "job_card"
              (2024-10-13 12:00:57) - start
 
-9. Add "check application status" functionality 
+9. [done] Add "check application status" functionality 
              (2024-10-13 13:49:48) - done
 
              
