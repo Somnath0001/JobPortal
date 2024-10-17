@@ -1,4 +1,5 @@
 from database import get_login_data;
+from werkzeug.security import check_password_hash, generate_password_hash;
 
 def validateUser(email, password):
     result = get_login_data(email)
@@ -6,7 +7,7 @@ def validateUser(email, password):
     # verify username and password
     if (result):    
         # email exists
-        if (password == result[3]):
+        if (check_password_hash(result[3], password)):
             print(f"\"{email}\" logged in successfully.")
             return True
         else:

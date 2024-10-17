@@ -135,9 +135,11 @@ def register_handler():
     sms_notification = request.form.get('sms-notification')
     email_notification = request.form.get('email-notification')
 
-    print(register_as, name, gender, dob, email, contact_number, password, profile_picture.filename, sms_notification, email_notification)
+    # Hash Password
+    hashed_password = generate_password_hash(password)
+    print(register_as, name, gender, dob, email, contact_number, hashed_password, profile_picture.filename, sms_notification, email_notification)
     # validate registration
-    is_valid_register = validateRegister(register_as, name, gender, dob, email, contact_number, password, profile_picture, sms_notification, email_notification)
+    is_valid_register = validateRegister(register_as, name, gender, dob, email, contact_number, hashed_password, profile_picture, sms_notification, email_notification)
     if (is_valid_register):
         return "<p>Registration Successful ! <a href=\"/login\">login</a></p>"
     else:
