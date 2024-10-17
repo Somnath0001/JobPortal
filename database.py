@@ -278,6 +278,28 @@ def applied_jobs(user_account_id):
     db.close()
     return result
 
+def get_job_application_status_by_recruiter(posted_by_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"""SELECT job_post.job_description, job_post.is_company_name_hidden, company.company_name, user_account.name, user_account.email, user_account.contact_number, job_post.is_active, status, application_date, job_application_status.id
+FROM `job_application_status`
+JOIN job_post ON job_application_status.job_post_id = job_post.id 
+JOIN company ON job_post.company_id = company.id 
+JOIN user_account ON job_application_status.user_account_id = user_account.id
+WHERE job_post.posted_by_id={posted_by_id}"""
+    cursor.execute(query)
+    result = cursor.fetchall()
+    db.close()
+    return result
+
+def update_job_application_status(id, new_status):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"UPDATE `job_application_status` SET `status`='{new_status}' WHERE id={id}"
+    cursor.execute(query)
+    db.commit()
+    db.close()
+
 
 
 

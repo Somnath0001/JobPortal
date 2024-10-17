@@ -1,42 +1,8 @@
-from database import applied_jobs;
-from user_session import get_id;
+import database as db;
 
-def generate_check_application_status_html():
-    user_account_id = 5
+print(db.get_job_application_status_by_recruiter(12))
 
-    html_head = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Status</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>Job Post Id</th>
-            <th>Status</th>
-            <th>Application Date</th>
-        </tr>"""
-    
-    html_end = """
-    </table>
-</body>
-</html>"""
+db.update_job_application_status(3, 'accepted')
+print('Updated status')
 
-    complete_html_code = html_head
-    result = applied_jobs(user_account_id)
-    for data in result:
-        row_code = f"""<tr>
-        <td>{data[1]}</td>
-        <td>{data[3]}</td>
-        <td>{data[4]}</td>
-</tr>
-"""
-        complete_html_code += row_code
-
-    complete_html_code += html_end
-
-    return complete_html_code
-
-print(generate_check_application_status_html())
+print(db.get_job_application_status_by_recruiter(12))

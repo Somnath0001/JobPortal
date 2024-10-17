@@ -1,20 +1,32 @@
 from flask import Flask, render_template, request;
 from register_handler import validateRegister;
 from login_handler import validateUser;
-from user_session import get_id, update_id;
-from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status;
+from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status, update_job_application_status;
 from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
 from experience_details_handler import handle_experience_details;
 from company_profile_handler import handle_company_profile;
-from user_session import get_id;
+from user_session import get_id, set_id;
 from job_card_handler import generate_job_card_html;
 from job_posting_handler import generate_job_posting_html_code;
 from handle_check_application_status import generate_check_application_status_html;
+from handle_manage_application_status import generate_manage_application_status_html;
 from datetime import date;
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_session import Session
 
 app = Flask(__name__)
+# Configure session settings:
+# SESSION_PERMANENT: Sessions expire when the browser closes.
+# SESSION_TYPE: Store sessions on the filesystem.
+# Set a secret key for secure session management.
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["SECRET_KEY"] = "your_secret_key_here"
+
+# Initialize Flask-Session with the Flask application.
+Session(app)
 
 @app.route("/") #default route
 def home(): # route function "home"
@@ -33,7 +45,7 @@ def login_handler():
 
         # add user_session
         id = get_login_data(email)[0]
-        update_id(id)
+        set_id(id)
         # print(get_id())
 
         # Now based on user_type, let's render corresponding user dashboard page
@@ -102,6 +114,11 @@ def job_card():
 @app.route("/check_application_status_handler")
 def check_application_status_handler():
     return generate_check_application_status_html()
+
+# render manage_application.html page
+@app.route("/manage_application")
+def manage_application_status_handler():
+    return generate_manage_application_status_html()
 
 # handle registration when user clicks submit button
 @app.route("/register_handler", methods=['POST'])
@@ -292,6 +309,14 @@ def apply():
 
     return generate_job_card_html()
 
-# 
+# Apply job_application_status when "Accept", "Reject" or "Schedule for Interview" button is clicked in "manage_applicaiton.html"
+@app.route("/apply_job_application_status", methods=["POST"])
+def apply_job_application_status():
+    job_application_status_id = request.form.get('job_application_status_id')
+    job_application_status = request.form.get('job_application_status')
+
+    print(job_application_status_id, job_application_status)
+    update_job_application_status(job_application_status_id, job_application_status)
+    return generate_manage_application_status_html()
 
 

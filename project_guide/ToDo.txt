@@ -41,6 +41,11 @@
 9. [done] Add "check application status" functionality 
              (2024-10-13 13:49:48) - done
 
+10. (2024-10-16 14:57:44) Add "Manage application" functionality 
+            Recruiter can "Accept" or "Reject" applitaions 
+            Once "Accepted", it can be "Scheduled for interview" 
+            
+
              
 
             

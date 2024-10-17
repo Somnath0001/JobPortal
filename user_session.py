@@ -1,9 +1,11 @@
-id = -1
+from flask import session
 
 def get_id():
-    return id
+    return session["user_id"]
 
-def update_id(new_value):
-    global id
-    id = new_value
+def set_id(user_id):
+    session["user_id"] = user_id
+
+def clear_session():
+    session.pop("user_id", None)
 
