@@ -1,5 +1,6 @@
 from database import get_job_application_status_by_recruiter;
 from user_session import get_id;
+import base64;
 
 def generate_manage_application_status_html():
     user_account_id = get_id()
@@ -23,6 +24,7 @@ def generate_manage_application_status_html():
             <th>Contact Number</th>
             <th>Status</th>
             <th>Application Date</th>
+            <th>Resume</th>
             <th>Accept</th>
             <th>Reject</th>
             <th>Schedule for Interview</th>
@@ -36,7 +38,7 @@ def generate_manage_application_status_html():
     complete_html_code = html_head
     result = get_job_application_status_by_recruiter(user_account_id)
     for data in result:
-        job_application_status_id = data[9]
+        job_application_status_id = data[11]
         color = "black"
         if (data[7] == "pending"):
             color = "orange"
@@ -47,6 +49,11 @@ def generate_manage_application_status_html():
         elif (data[7] == "interviewScheduled"):
             color = "blue"
 
+        # Base64 encode the file data
+        resume_base64 = base64.b64encode(data[10]).decode('utf-8')
+        # Prepend "data:application/pdf;base64," to the encoded string to ensure the browser interprets it as a PDF file.
+        resume_link = f"data:application/pdf;base64,{resume_base64}"
+
         row_code = f"""<tr>
         <td>{data[0]}</td>
         <td>{data[2]}</td>
@@ -55,6 +62,7 @@ def generate_manage_application_status_html():
         <td>{data[5]}</td>
         <td style="color:{color}">{data[7]}</td>
         <td>{data[8]}</td>
+        <td><a href="{resume_link}" download="{data[9]}" target="_blank">{data[9]}</a></td>
         <td><form action="/apply_job_application_status" method="POST">
                 <input type="hidden" id="job_application_status_id" name="job_application_status_id" value="{job_application_status_id}">
                 <input type="hidden" id="job_application_status" name="job_application_status" value="accepted">

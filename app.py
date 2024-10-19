@@ -7,7 +7,7 @@ from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
 from experience_details_handler import handle_experience_details;
 from company_profile_handler import handle_company_profile;
-from user_session import get_id, set_id;
+from user_session import get_id, set_id, clear_session;
 from job_card_handler import generate_job_card_html;
 from job_posting_handler import generate_job_posting_html_code;
 from handle_check_application_status import generate_check_application_status_html;
@@ -119,6 +119,13 @@ def check_application_status_handler():
 @app.route("/manage_application")
 def manage_application_status_handler():
     return generate_manage_application_status_html()
+
+# logout
+@app.route("/logout")
+def logout():
+    clear_session()
+    print("User logout.")
+    return render_template("index.html")
 
 # render upload_resume.html page
 @app.route("/upload_resume", methods=['GET', 'POST'])
