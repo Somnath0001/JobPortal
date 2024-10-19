@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request;
 from register_handler import validateRegister;
 from login_handler import validateUser;
-from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status, update_job_application_status, add_resume;
+from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status, update_job_application_status, add_resume, update_job_active_status;
 from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
@@ -15,6 +15,7 @@ from handle_manage_application_status import generate_manage_application_status_
 from datetime import date;
 from werkzeug.security import generate_password_hash;
 from flask_session import Session;
+from manage_posted_jobs import generate_manage_posted_jobs;
 
 app = Flask(__name__)
 # Configure session settings:
@@ -337,6 +338,16 @@ def manage_application_status():
     else:
         return generate_manage_application_status_html()
 
-@app.route("/manage_posted_jobs")
+@app.route("/manage_posted_jobs", methods=['GET', 'POST'])
 def manage_posted_jobs():
-    return render_template("manage_posted_jobs.html")
+    # POST method - change active status of posted jobs
+    if request.method == "POST":
+        # Get all data
+        job_post_id = request.form.get("job_post_id")
+        job_post_status = request.form.get("job_post_status")
+        print(job_post_id, job_post_status)
+        update_job_active_status(job_post_id, job_post_status)
+        return generate_manage_posted_jobs()
+    # GET method - loads manage_posted_jobs.html
+    else:
+        return generate_manage_posted_jobs()

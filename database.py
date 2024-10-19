@@ -309,6 +309,36 @@ def add_resume(user_account_id, resume_file, resume_file_name):
     db.commit()
     db.close()
 
+def get_job_post():
+    db = connect_db()
+    cursor = db.cursor()
+    query = "SELECT * FROM `job_post` WHERE 1"
+    cursor.execute(query)
+    results = cursor.fetchall()
+    db.close()
+    return results
+
+def get_posted_jobs(user_account_id):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"""SELECT job_post.id, job_type, company_name, is_company_name_hidden, created_date, job_description, street_address, city, state, country, zip, is_active, salary_offered, experience_required 
+FROM `job_post` 
+JOIN job_type ON job_post.job_type_id = job_type.id
+JOIN company ON job_post.company_id = company.id
+JOIN job_location ON job_post.job_location_id = job_location.id
+WHERE job_post.posted_by_id = {user_account_id};"""
+    cursor.execute(query)
+    results = cursor.fetchall()
+    db.close()
+    return results
+
+def update_job_active_status(job_post_id, job_post_status):
+    db = connect_db()
+    cursor = db.cursor()
+    query = f"UPDATE `job_post` SET `is_active`='{job_post_status}' WHERE id = {job_post_id};"
+    cursor.execute(query)
+    db.commit()
+    db.close()
 
 
 
