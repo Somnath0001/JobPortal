@@ -5,7 +5,7 @@ CREATE DATABASE job_portal;
 CREATE TABLE `job_portal`.`user_type` (`id` INT NOT NULL , `user_type_name` VARCHAR(20) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 -- create user_account table:
-CREATE TABLE `job_portal`.`user_account` (`id` INT NOT NULL , `user_type_id` INT NOT NULL , `email` VARCHAR(255) NOT NULL , `password` VARCHAR(100) NOT NULL , `date_of_birth` DATE NOT NULL , `gender` CHAR(1) NOT NULL , `is_active` CHAR(1) NOT NULL , `contact_number` INT(10) NOT NULL , `sms_notification_active` CHAR(1) NOT NULL , `email_notification_active` CHAR(1) NOT NULL , `user_image` BLOB , `registration_date` DATE NOT NULL , PRIMARY KEY (`id`) , FOREIGN KEY (user_type_id) REFERENCES user_type(id)) ENGINE = InnoDB;
+CREATE TABLE `job_portal`.`user_account` (`id` INT NOT NULL , `user_type_id` INT NOT NULL , `email` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `date_of_birth` DATE NOT NULL , `gender` CHAR(1) NOT NULL , `is_active` CHAR(1) NOT NULL , `contact_number` INT(10) NOT NULL , `sms_notification_active` CHAR(1) NOT NULL , `email_notification_active` CHAR(1) NOT NULL , `user_image` BLOB , `registration_date` DATE NOT NULL , PRIMARY KEY (`id`) , FOREIGN KEY (user_type_id) REFERENCES user_type(id)) ENGINE = InnoDB;
 
 -- create user_log table:
 CREATE TABLE `job_portal`.`user_log` (`user_account_id` INT NOT NULL , `last_login_date` DATE NOT NULL , `last_job_apply_date` DATE , PRIMARY KEY (`user_account_id`) , FOREIGN KEY (user_account_id) REFERENCES user_account(id)) ENGINE = InnoDB;

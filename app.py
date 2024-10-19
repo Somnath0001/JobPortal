@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request;
 from register_handler import validateRegister;
 from login_handler import validateUser;
-from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status, update_job_application_status;
+from database import get_login_data, get_user_type_id, add_job_post, add_job_location, get_job_location_id, get_job_post_id, add_job_post_skill_set, add_job_post_activity, add_job_application_status, update_job_application_status, add_resume;
 from job_seeker_profile_handler import handle_seeker_profile;
 from educational_details_handler import handle_educational_details;
 from skills_handler import handle_skills;
@@ -13,8 +13,8 @@ from job_posting_handler import generate_job_posting_html_code;
 from handle_check_application_status import generate_check_application_status_html;
 from handle_manage_application_status import generate_manage_application_status_html;
 from datetime import date;
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_session import Session
+from werkzeug.security import generate_password_hash;
+from flask_session import Session;
 
 app = Flask(__name__)
 # Configure session settings:
@@ -119,6 +119,25 @@ def check_application_status_handler():
 @app.route("/manage_application")
 def manage_application_status_handler():
     return generate_manage_application_status_html()
+
+# render upload_resume.html page
+@app.route("/upload_resume", methods=['GET', 'POST'])
+def upload_resume():
+    # POSt method - from client to server - When client submit the form
+    if request.method == 'POST':
+        # Get all the data from the page
+        resume = request.files.get("resume")
+        resume_data = resume.read()
+        resume_filename = resume.filename
+        user_account_id = get_id()
+        print("User Id: ", user_account_id, "Resume Filename: ", resume_filename)
+        # Add to resume table in database
+        add_resume(user_account_id, resume_data, resume_filename)
+        return "Resume Uploaded."
+    # GET method - from server to client - When client request for the page
+    else:
+        return render_template("upload_resume.html")
+
 
 # handle registration when user clicks submit button
 @app.route("/register_handler", methods=['POST'])

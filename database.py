@@ -252,7 +252,7 @@ def get_all_job_type():
 def add_job_application_status(job_post_id, user_account_id, status):
     db = connect_db()
     cursor = db.cursor()
-    query = f"INSERT INTO `job_application_status`(`job_post_id`, `user_account_id`, `status`) VALUES (%s,%s,%s)"
+    query = "INSERT INTO `job_application_status`(`job_post_id`, `user_account_id`, `status`) VALUES (%s,%s,%s)"
     cursor.execute(query, (job_post_id, user_account_id, status))
     db.commit()
     db.close()
@@ -300,7 +300,13 @@ def update_job_application_status(id, new_status):
     db.commit()
     db.close()
 
-
+def add_resume(user_account_id, resume_file, resume_file_name):
+    db = connect_db()
+    cursor = db.cursor()
+    query = "INSERT INTO `resume`(`user_account_id`, `resume_file`, `file_name`) VALUES (%s,%s,%s);"
+    cursor.execute(query, (user_account_id, resume_file, resume_file_name))
+    db.commit()
+    db.close()
 
 
 

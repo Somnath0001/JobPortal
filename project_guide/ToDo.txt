@@ -45,6 +45,10 @@
             Recruiter can "Accept" or "Reject" applitaions 
             Once "Accepted", it can be "Scheduled for interview" 
             
+11. (2024-10-17 15:27:30) User Session added.
+12. (2024-10-17 15:27:48) Password Hashing added.
+
+13. (2024-10-19 15:28:15) Upload Resume Functionality 
 
              
 
