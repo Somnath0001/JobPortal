@@ -69,7 +69,7 @@ code_1 = """<!DOCTYPE html>
     <div class="container">
         <div class="card">
             <h2>Job Posting</h2>
-            <form action="/job_posting_handler" method="POST">
+            <form action="/job_posting" method="POST">
                 <div class="input-box">
                     <label for="job-type">Select Job Type:</label>
                     <select id="job-type" name="job-type" required>

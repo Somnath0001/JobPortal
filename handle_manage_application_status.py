@@ -63,19 +63,19 @@ def generate_manage_application_status_html():
         <td style="color:{color}">{data[7]}</td>
         <td>{data[8]}</td>
         <td><a href="{resume_link}" download="{data[9]}" target="_blank">{data[9]}</a></td>
-        <td><form action="/apply_job_application_status" method="POST">
+        <td><form action="/manage_application_status" method="POST">
                 <input type="hidden" id="job_application_status_id" name="job_application_status_id" value="{job_application_status_id}">
                 <input type="hidden" id="job_application_status" name="job_application_status" value="accepted">
                 <input type="submit" value="Accept">
             </form>
         </td>
-        <td><form action="/apply_job_application_status" method="POST">
+        <td><form action="/manage_application_status" method="POST">
                 <input type="hidden" id="job_application_status_id" name="job_application_status_id" value="{job_application_status_id}">
                 <input type="hidden" id="job_application_status" name="job_application_status" value="rejected">
                 <input type="submit" value="Reject">
             </form>
         </td>
-        <td><form action="/apply_job_application_status" method="POST">
+        <td><form action="/manage_application_status" method="POST">
                 <input type="hidden" id="job_application_status_id" name="job_application_status_id" value="{job_application_status_id}">
                 <input type="hidden" id="job_application_status" name="job_application_status" value="interviewScheduled">
                 <input type="submit" value="Schedule for Interview">
